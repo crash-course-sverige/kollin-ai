@@ -118,7 +118,7 @@ importers:
         specifier: ^3
         version: 3.3.0
       '@tailwindcss/postcss':
-        specifier: ^4
+        specifier: ^4.0.12
         version: 4.0.12
       '@testing-library/jest-dom':
         specifier: ^6.6.3
@@ -166,7 +166,7 @@ importers:
         specifier: ^3.5.3
         version: 3.5.3
       tailwindcss:
-        specifier: ^4
+        specifier: ^4.0.12
         version: 4.0.12
       typescript:
         specifier: ^5

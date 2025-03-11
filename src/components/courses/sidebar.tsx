@@ -11,7 +11,6 @@ import {
   Network
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 // Mock courses data (in production, this would come from a server component)
 const courses = [

@@ -3,6 +3,9 @@ import { runNeo4jQuery, closeNeo4jDriver } from '../lib/neo4j';
 // Course ID for calculus fundamentals
 const COURSE_ID = 'calculus-fundamentals';
 
+type CourseRecord = Record<string, string>;
+type ConceptRecord = Record<string, string>;
+
 async function checkCalcuusData() {
   try {
     console.log(`Checking data for course: ${COURSE_ID}`);
@@ -22,7 +25,7 @@ async function checkCalcuusData() {
         'MATCH (c:Course) RETURN c.id, c.title'
       );
       
-      allCourses.forEach((course: any) => {
+      allCourses.forEach((course: CourseRecord) => {
         console.log(`- ${course['c.title']} (${course['c.id']})`);
       });
       
@@ -56,7 +59,7 @@ async function checkCalcuusData() {
       );
       
       console.log('\nSample concepts:');
-      sampleConcepts.forEach((concept: any) => {
+      sampleConcepts.forEach((concept: ConceptRecord) => {
         console.log(`- ${concept['concept.name']} (${concept['concept.id']})`);
       });
       

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { CourseCard } from "@/components/courses/course-card";
 import { getCourses } from "@/lib/courses/data";
 

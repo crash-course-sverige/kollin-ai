@@ -50,8 +50,8 @@ export async function getKnowledgeGraphData(courseId: string): Promise<Knowledge
     );
     
     // Extract nodes from the result
-    const concepts = result[0]?.concepts as any[] || [];
-    const relationships = result[0]?.relationships as any[] || [];
+    const concepts = result[0]?.concepts as { properties: { id: string; name: string; description: string } }[] || [];
+    const relationships = result[0]?.relationships as { source: string; target: string; type: string; label?: string }[] || [];
     
     // If we got data from Neo4j, transform it to our graph data format
     if (concepts.length > 0) {
@@ -67,8 +67,8 @@ export async function getKnowledgeGraphData(courseId: string): Promise<Knowledge
       
       // Create links from relationships
       const links: KnowledgeGraphLink[] = relationships
-        .filter((rel: any) => rel.source && rel.target) // Filter out invalid relationships
-        .map((rel: any) => ({
+        .filter((rel: { source: string; target: string; type: string; label?: string }) => rel.source && rel.target) // Filter out invalid relationships
+        .map((rel: { source: string; target: string; type: string; label?: string }) => ({
           source: rel.source,
           target: rel.target,
           type: rel.type,

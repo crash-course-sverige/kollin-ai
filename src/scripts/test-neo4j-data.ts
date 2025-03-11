@@ -3,6 +3,23 @@ import { testNeo4jConnection, runNeo4jQuery, closeNeo4jDriver } from '../lib/neo
 // ID of the calculus course we want to check
 const CALCULUS_COURSE_ID = 'calculus-fundamentals';
 
+// Define types for our records
+type CourseRecord = {
+  id: string;
+  title: string;
+};
+
+type ConceptRecord = {
+  id: string;
+  name: string;
+};
+
+type RelationshipRecord = {
+  source: string;
+  type: string;
+  target: string;
+};
+
 async function checkCalclusCourseData() {
   try {
     // Test connection first
@@ -39,7 +56,7 @@ async function checkCalclusCourseData() {
         console.log('❌ No courses found in the database');
       } else {
         console.log('Found courses:');
-        allCourses.forEach((course: any) => {
+        allCourses.forEach((course: CourseRecord) => {
           console.log(`- ${course.title} (${course.id})`);
         });
       }
@@ -75,7 +92,7 @@ async function checkCalclusCourseData() {
         );
         
         console.log('\nSample concepts:');
-        sampleConcepts.forEach((concept: any) => {
+        sampleConcepts.forEach((concept: ConceptRecord) => {
           console.log(`- ${concept.name} (${concept.id})`);
         });
         
@@ -107,7 +124,7 @@ async function checkCalclusCourseData() {
           );
           
           console.log('\nSample relationships:');
-          sampleRelationships.forEach((rel: any) => {
+          sampleRelationships.forEach((rel: RelationshipRecord) => {
             console.log(`- "${rel.source}" ${rel.type} "${rel.target}"`);
           });
         }
