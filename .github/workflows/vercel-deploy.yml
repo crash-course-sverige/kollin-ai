@@ -1,21 +1,25 @@
-name: Deploy Branch Preview
+name: Deploy to Vercel
 
 on:
   push:
-    branches-ignore:
-      - main # main branch is handled by Vercel's default production deployment
+    branches:
+      - "**" # This will match all branches
 
 jobs:
-  deploy-preview:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Deploy Preview
+      - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # You need to add this to GitHub secrets
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: team_JnATE1AsaL0ebr2vzVyKdBk2
           vercel-project-id: prj_eB8H4Nr3CJ2jzBSW76YZ7n6hY6gd
+          alias-domains: |
+            {{BRANCH}}-kollin-ai.vercel.app
+          working-directory: ./
+          vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod' || '' }}
