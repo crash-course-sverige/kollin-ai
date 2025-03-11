@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import tailwindcssAnimate from 'tailwindcss-animate';
-
 export default {
   darkMode: 'class',
   content: [
@@ -9,7 +7,7 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   plugins: [
-    tailwindcssAnimate,
+    // Plugins will be configured as needed for v4
   ],
   theme: {
     container: {
