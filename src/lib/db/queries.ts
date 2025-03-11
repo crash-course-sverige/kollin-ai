@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { users, User, NewUser } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
-import { hash } from "bcrypt";
+import { hash } from "bcryptjs";
 
 export async function getUserByEmail(email: string): Promise<User | undefined> {
   const result = await db

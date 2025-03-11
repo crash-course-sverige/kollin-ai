@@ -3,7 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 
 import { db } from "@/lib/db";
 import { env } from "@/lib/env";

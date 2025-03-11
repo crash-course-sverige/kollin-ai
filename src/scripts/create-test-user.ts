@@ -5,7 +5,7 @@
 import { db } from '../lib/db';
 import { users } from '../lib/db/schema';
 import { eq } from 'drizzle-orm';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 
 // Load environment variables
