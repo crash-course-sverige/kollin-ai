@@ -104,3 +104,5 @@ pnpm lint
 This application can be deployed to Vercel, Netlify, or any other platform that supports Next.js applications.
 
 When deploying, make sure to set up the appropriate environment variables for your database connection and authentication.
+
+<!-- Edited to test GitHub Actions deployment workflow -->
