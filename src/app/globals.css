@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities";
 
 @layer theme {
   :root {
@@ -49,9 +50,10 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: rgb(var(--border));
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 }
