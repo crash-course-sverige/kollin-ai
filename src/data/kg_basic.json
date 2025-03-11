@@ -1,0 +1,814 @@
+{
+  "nodes": [
+    {
+      "id": "basic_algebra_concepts",
+      "name": "Basic Algebra Concepts",
+      "description": "Essential algebraic tools needed for calculus, including factoring and exponents.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "polynomial_functions",
+      "name": "Polynomial Functions",
+      "description": "Functions expressed as sums of powers of x with constant coefficients.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "rational_functions",
+      "name": "Rational Functions",
+      "description": "Functions represented as a ratio of two polynomials.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "function_notation_and_domain_range",
+      "name": "Function Notation, Domain, and Range",
+      "description": "How to express, interpret, and determine the input/output sets for functions.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "coordinate_geometry_basics",
+      "name": "Coordinate Geometry Basics",
+      "description": "Plotting points and interpreting graphs in the xy-plane.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "trigonometric_functions_intro",
+      "name": "Introduction to Trigonometric Functions",
+      "description": "Basic sine, cosine, and tangent definitions and properties.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "exponential_functions_intro",
+      "name": "Introduction to Exponential Functions",
+      "description": "Functions of the form a^x, focusing on properties and basic graphs.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "logarithmic_functions_intro",
+      "name": "Introduction to Logarithmic Functions",
+      "description": "Inverse of exponential functions and their basic properties.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "functions_transformations",
+      "name": "Transformations of Functions",
+      "description": "Horizontal/vertical shifts, stretches, and reflections of graphs.",
+      "category": "prerequisite",
+      "difficulty": "basic"
+    },
+    {
+      "id": "limit_intuitive_definition",
+      "name": "Intuitive Definition of a Limit",
+      "description": "An informal notion of approaching a value as x approaches a point.",
+      "category": "limits",
+      "difficulty": "basic",
+      "examples": [
+        {
+          "problem": "Using an intuitive approach, determine lim (x→2) of f(x) = x+1.",
+          "solution": "As x gets closer to 2, x+1 approaches 3. Hence, the limit is 3."
+        }
+      ]
+    },
+    {
+      "id": "limit_epsilon_delta_definition",
+      "name": "Epsilon-Delta Definition of a Limit",
+      "description": "The formal definition of limit using ε and δ to define closeness precisely.",
+      "category": "limits",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "limit_laws",
+      "name": "Limit Laws",
+      "description": "Algebraic rules that streamline the calculation of limits.",
+      "category": "limits",
+      "difficulty": "basic"
+    },
+    {
+      "id": "one_sided_limits",
+      "name": "One-Sided Limits",
+      "description": "Limits as x approaches a point from the left or right specifically.",
+      "category": "limits",
+      "difficulty": "basic"
+    },
+    {
+      "id": "infinite_limits_and_vertical_asymptotes",
+      "name": "Infinite Limits and Vertical Asymptotes",
+      "description": "Behavior of functions that grow without bound near certain points.",
+      "category": "limits",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "continuity_and_discontinuities",
+      "name": "Continuity and Types of Discontinuities",
+      "description": "Definition of continuity and how functions can fail to be continuous.",
+      "category": "limits",
+      "difficulty": "basic"
+    },
+    {
+      "id": "intermediate_value_theorem",
+      "name": "Intermediate Value Theorem",
+      "description": "If a function is continuous on an interval, it attains all intermediate values.",
+      "category": "limits",
+      "difficulty": "basic"
+    },
+    {
+      "id": "limits_at_infinity_horizontal_asymptotes",
+      "name": "Limits at Infinity and Horizontal Asymptotes",
+      "description": "The behavior of functions as x grows beyond bounds and identifying asymptotes.",
+      "category": "limits",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "special_trig_limits",
+      "name": "Special Trigonometric Limits",
+      "description": "Key limits such as lim (x→0) (sin x / x) = 1.",
+      "category": "limits",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "derivative_definition",
+      "name": "Definition of Derivative",
+      "description": "A function’s instantaneous rate of change at a point, via a limit of difference quotients.",
+      "category": "derivatives",
+      "difficulty": "basic",
+      "formula": "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}",
+      "examples": [
+        {
+          "problem": "Use the definition to find the derivative of f(x) = x^2 at x = 3.",
+          "solution": "f'(3) = \\lim_{h \\to 0} \\frac{(3+h)^2 - 9}{h} = 6."
+        }
+      ]
+    },
+    {
+      "id": "differentiation_rules_basic",
+      "name": "Basic Differentiation Rules",
+      "description": "Rules for differentiating sums, constants, and power functions.",
+      "category": "derivatives",
+      "difficulty": "basic"
+    },
+    {
+      "id": "product_rule",
+      "name": "Product Rule",
+      "description": "A rule to differentiate the product of two functions.",
+      "category": "derivatives",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "quotient_rule",
+      "name": "Quotient Rule",
+      "description": "A rule to differentiate the quotient of two functions.",
+      "category": "derivatives",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "chain_rule",
+      "name": "Chain Rule",
+      "description": "Differentiating a composition of functions by multiplying derivatives along the chain.",
+      "category": "derivatives",
+      "difficulty": "intermediate",
+      "formula": "\\frac{d}{dx}[f(g(x))] = f'(g(x))\\,g'(x)",
+      "examples": [
+        {
+          "problem": "Differentiate f(x) = (3x + 2)^5.",
+          "solution": "f'(x) = 5(3x+2)^4 * 3 = 15(3x+2)^4."
+        }
+      ]
+    },
+    {
+      "id": "implicit_differentiation",
+      "name": "Implicit Differentiation",
+      "description": "Differentiating an equation not explicitly solved for y.",
+      "category": "derivatives",
+      "difficulty": "intermediate",
+      "examples": [
+        {
+          "problem": "Differentiate x^2 + y^2 = 25 w.r.t x.",
+          "solution": "2x + 2y (dy/dx) = 0 ⇒ dy/dx = -x/y."
+        }
+      ]
+    },
+    {
+      "id": "higher_order_derivatives",
+      "name": "Higher-Order Derivatives",
+      "description": "Second, third, and nth derivatives measuring curvature, jerk, and beyond.",
+      "category": "derivatives",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "derivatives_of_trig_functions",
+      "name": "Derivatives of Trigonometric Functions",
+      "description": "Formulas for sin, cos, tan, and other trig functions.",
+      "category": "derivatives",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "derivatives_of_exponential_functions",
+      "name": "Derivatives of Exponential Functions",
+      "description": "Formulas for d/dx of a^x and e^x.",
+      "category": "derivatives",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "derivatives_of_logarithmic_functions",
+      "name": "Derivatives of Logarithmic Functions",
+      "description": "Formulas for d/dx of ln x and log_a x.",
+      "category": "derivatives",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "derivatives_of_inverse_trig",
+      "name": "Derivatives of Inverse Trigonometric Functions",
+      "description": "Formulas for arcsin, arctan, arccos, etc.",
+      "category": "derivatives",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "rate_of_change",
+      "name": "Rate of Change",
+      "description": "Interpreting derivatives as real-world rates of change.",
+      "category": "applications",
+      "difficulty": "basic"
+    },
+    {
+      "id": "related_rates",
+      "name": "Related Rates",
+      "description": "Using derivatives to link rates in problems with multiple changing variables.",
+      "category": "applications",
+      "difficulty": "intermediate",
+      "examples": [
+        {
+          "problem": "A circle’s radius grows at 2 cm/s. How fast is the area changing?",
+          "solution": "Area A = πr^2 => dA/dt = 2πr (dr/dt) = 2πr*2."
+        }
+      ]
+    },
+    {
+      "id": "mean_value_theorem",
+      "name": "Mean Value Theorem",
+      "description": "Guarantees at least one point with a slope matching the average rate of change.",
+      "category": "applications",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "monotonicity_and_critical_points",
+      "name": "Monotonicity and Critical Points",
+      "description": "Using f' to find intervals where a function is increasing or decreasing.",
+      "category": "applications",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "first_derivative_test_and_second_derivative_test",
+      "name": "First and Second Derivative Tests",
+      "description": "Determining local maxima, minima, and inflection points.",
+      "category": "applications",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "optimization_problems",
+      "name": "Optimization Problems",
+      "description": "Using derivatives to find maxima or minima in real-world contexts.",
+      "category": "applications",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "curve_sketching",
+      "name": "Curve Sketching",
+      "description": "Plotting a function’s graph using derivative information and asymptotes.",
+      "category": "applications",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "l_hopital_rule",
+      "name": "L'Hôpital's Rule",
+      "description": "A strategy for evaluating indeterminate limits using derivatives.",
+      "category": "applications",
+      "difficulty": "advanced",
+      "examples": [
+        {
+          "problem": "Compute lim (x→0) [sin(x)/x].",
+          "solution": "Direct substitution gives 0/0. By L'Hôpital’s Rule, the limit of sin(x)/x is the limit of cos(x)/1 at x→0, which is 1."
+        }
+      ]
+    },
+    {
+      "id": "newtons_method",
+      "name": "Newton's Method",
+      "description": "An iterative scheme to approximate roots of a function using tangents.",
+      "category": "applications",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "antiderivatives_definition",
+      "name": "Definition of Antiderivatives",
+      "description": "A function F(x) whose derivative is the given function f(x).",
+      "category": "integration",
+      "difficulty": "basic"
+    },
+    {
+      "id": "basic_integration_rules",
+      "name": "Basic Integration Rules",
+      "description": "Indefinite integration rules for power, constant, and sum functions.",
+      "category": "integration",
+      "difficulty": "basic"
+    },
+    {
+      "id": "definite_integrals",
+      "name": "Definite Integrals",
+      "description": "Integration with limits to find net signed area under a curve.",
+      "category": "integration",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "fundamental_theorem_of_calculus",
+      "name": "Fundamental Theorem of Calculus",
+      "description": "Links differentiation and integration, providing a way to evaluate definite integrals.",
+      "category": "integration",
+      "difficulty": "intermediate",
+      "examples": [
+        {
+          "problem": "Evaluate ∫ from 1 to 3 of (2x) dx using FTC.",
+          "solution": "F(x) = x^2 ⇒ [x^2] from 1 to 3 = 9 - 1 = 8."
+        }
+      ]
+    },
+    {
+      "id": "u_substitution",
+      "name": "U-Substitution",
+      "description": "A method for integrating composite functions by substituting an inner function.",
+      "category": "integration",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "areas_under_curves",
+      "name": "Areas Under Curves",
+      "description": "Using integrals to find the region under a function above the x-axis.",
+      "category": "integration",
+      "difficulty": "basic"
+    },
+    {
+      "id": "area_between_curves",
+      "name": "Area Between Curves",
+      "description": "Determining the integral that captures the area enclosed by two or more functions.",
+      "category": "integration",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "volumes_of_revolution",
+      "name": "Volumes of Revolution",
+      "description": "Using integration (disk/washer/shell methods) to compute 3D volumes.",
+      "category": "integration",
+      "difficulty": "intermediate",
+      "examples": [
+        {
+          "problem": "Find the volume of revolution of y=x^2 around the x-axis from x=0 to x=2 (disk method).",
+          "solution": "Volume = π ∫[0 to 2] (x^2)^2 dx = π ∫[0 to 2] x^4 dx = π[ x^5/5 ] from 0 to 2 = (32π/5)."
+        }
+      ]
+    },
+    {
+      "id": "arc_length",
+      "name": "Arc Length",
+      "description": "Using integration to find the length of a function’s curve on an interval.",
+      "category": "integration",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "integration_of_trig_functions",
+      "name": "Integration of Trigonometric Functions",
+      "description": "Finding antiderivatives of sin, cos, tan, etc.",
+      "category": "integration",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "integration_of_exponential_and_log_functions",
+      "name": "Integration of Exponential and Logarithmic Functions",
+      "description": "Finding antiderivatives for e^x, a^x, ln(x), etc.",
+      "category": "integration",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "exponential_and_logarithmic_properties",
+      "name": "Exponential and Logarithmic Properties",
+      "description": "Algebraic properties and key identities for exp and log functions.",
+      "category": "transcendental",
+      "difficulty": "basic"
+    },
+    {
+      "id": "trigonometric_identities",
+      "name": "Trigonometric Identities",
+      "description": "Fundamental identities (Pythagorean, angle sum) that simplify trig expressions.",
+      "category": "transcendental",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "inverse_trigonometric_functions",
+      "name": "Inverse Trigonometric Functions",
+      "description": "Arcsin, arctan, arccos, etc., as inverses of trig functions.",
+      "category": "transcendental",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "hyperbolic_functions",
+      "name": "Hyperbolic Functions",
+      "description": "Definitions and properties of sinh, cosh, tanh, etc.",
+      "category": "transcendental",
+      "difficulty": "advanced"
+    },
+    {
+      "id": "inverse_hyperbolic_functions",
+      "name": "Inverse Hyperbolic Functions",
+      "description": "Definitions and properties of asinh, acosh, atanh, etc.",
+      "category": "transcendental",
+      "difficulty": "advanced"
+    }
+  ],
+  "edges": [
+    {
+      "source": "basic_algebra_concepts",
+      "target": "polynomial_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "basic_algebra_concepts",
+      "target": "rational_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "basic_algebra_concepts",
+      "target": "function_notation_and_domain_range",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "basic_algebra_concepts",
+      "target": "coordinate_geometry_basics",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "polynomial_functions",
+      "target": "rational_functions",
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "function_notation_and_domain_range",
+      "target": "functions_transformations",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "function_notation_and_domain_range",
+      "target": "limit_intuitive_definition",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "trigonometric_functions_intro",
+      "target": "trigonometric_identities",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "trigonometric_functions_intro",
+      "target": "special_trig_limits",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "exponential_functions_intro",
+      "target": "exponential_and_logarithmic_properties",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "logarithmic_functions_intro",
+      "target": "exponential_and_logarithmic_properties",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "exponential_and_logarithmic_properties",
+      "target": "derivatives_of_exponential_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_intuitive_definition",
+      "target": "limit_laws",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_laws",
+      "target": "one_sided_limits",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_laws",
+      "target": "infinite_limits_and_vertical_asymptotes",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_laws",
+      "target": "special_trig_limits",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "infinite_limits_and_vertical_asymptotes",
+      "target": "limits_at_infinity_horizontal_asymptotes",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_intuitive_definition",
+      "target": "continuity_and_discontinuities",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "continuity_and_discontinuities",
+      "target": "intermediate_value_theorem",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_intuitive_definition",
+      "target": "derivative_definition",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "derivative_definition",
+      "target": "differentiation_rules_basic",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "differentiation_rules_basic",
+      "target": "product_rule",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "differentiation_rules_basic",
+      "target": "quotient_rule",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "product_rule",
+      "target": "chain_rule",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "quotient_rule",
+      "target": "chain_rule",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "chain_rule",
+      "target": "implicit_differentiation",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "implicit_differentiation",
+      "target": "derivatives_of_trig_functions",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "derivatives_of_trig_functions",
+      "target": "derivatives_of_inverse_trig",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "derivatives_of_exponential_functions",
+      "target": "derivatives_of_logarithmic_functions",
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "derivatives_of_exponential_functions",
+      "target": "higher_order_derivatives",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "derivatives_of_logarithmic_functions",
+      "target": "higher_order_derivatives",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "higher_order_derivatives",
+      "target": "rate_of_change",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "derivatives_of_trig_functions",
+      "target": "rate_of_change",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "rate_of_change",
+      "target": "related_rates",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "chain_rule",
+      "target": "related_rates",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "derivative_definition",
+      "target": "mean_value_theorem",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "mean_value_theorem",
+      "target": "monotonicity_and_critical_points",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "monotonicity_and_critical_points",
+      "target": "optimization_problems",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "monotonicity_and_critical_points",
+      "target": "curve_sketching",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "monotonicity_and_critical_points",
+      "target": "first_derivative_test_and_second_derivative_test",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "first_derivative_test_and_second_derivative_test",
+      "target": "curve_sketching",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_epsilon_delta_definition",
+      "target": "l_hopital_rule",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limits_at_infinity_horizontal_asymptotes",
+      "target": "l_hopital_rule",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "limit_intuitive_definition",
+      "target": "l_hopital_rule",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "derivative_definition",
+      "target": "newtons_method",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "antiderivatives_definition",
+      "target": "basic_integration_rules",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "basic_integration_rules",
+      "target": "definite_integrals",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "definite_integrals",
+      "target": "fundamental_theorem_of_calculus",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "fundamental_theorem_of_calculus",
+      "target": "u_substitution",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "u_substitution",
+      "target": "integration_of_trig_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "integration_of_trig_functions",
+      "target": "integration_of_exponential_and_log_functions",
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "definite_integrals",
+      "target": "areas_under_curves",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "areas_under_curves",
+      "target": "area_between_curves",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "area_between_curves",
+      "target": "volumes_of_revolution",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "volumes_of_revolution",
+      "target": "arc_length",
+      "type": "LEADS_TO"
+    },
+    {
+      "source": "polynomial_functions",
+      "target": "infinite_limits_and_vertical_asymptotes",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "rational_functions",
+      "target": "infinite_limits_and_vertical_asymptotes",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "polynomial_functions",
+      "target": "limits_at_infinity_horizontal_asymptotes",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "rational_functions",
+      "target": "limits_at_infinity_horizontal_asymptotes",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "functions_transformations",
+      "target": "curve_sketching",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "special_trig_limits",
+      "target": "l_hopital_rule",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "implicit_differentiation",
+      "target": "related_rates",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "optimization_problems",
+      "target": "newtons_method",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "fundamental_theorem_of_calculus",
+      "target": "area_between_curves",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "fundamental_theorem_of_calculus",
+      "target": "volumes_of_revolution",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "fundamental_theorem_of_calculus",
+      "target": "arc_length",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "special_trig_limits",
+      "target": "derivatives_of_trig_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "chain_rule",
+      "target": "derivatives_of_exponential_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "chain_rule",
+      "target": "derivatives_of_logarithmic_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "chain_rule",
+      "target": "derivatives_of_inverse_trig",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "hyperbolic_functions",
+      "target": "inverse_hyperbolic_functions",
+      "type": "PREREQUISITE_FOR"
+    },
+    {
+      "source": "derivatives_of_trig_functions",
+      "target": "derivatives_of_exponential_functions",
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "integration_of_trig_functions",
+      "target": "arc_length",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "integration_of_exponential_and_log_functions",
+      "target": "arc_length",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "integration_of_trig_functions",
+      "target": "volumes_of_revolution",
+      "type": "APPLIED_IN"
+    },
+    {
+      "source": "integration_of_exponential_and_log_functions",
+      "target": "volumes_of_revolution",
+      "type": "APPLIED_IN"
+    }
+  ]
+}
