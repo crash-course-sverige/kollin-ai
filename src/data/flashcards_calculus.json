@@ -1,0 +1,305 @@
+{
+  "title": "Calculus I Flashcards",
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Limits and Continuity",
+      "front": "What is the definition of the limit lim_{x → a} f(x) = L?",
+      "back": "For every ε > 0, there exists a δ > 0 such that if 0 < |x - a| < δ, then |f(x) - L| < ε."
+    },
+    {
+      "id": 2,
+      "topic": "Limits and Continuity",
+      "front": "What does it mean for a function to be continuous at a point a?",
+      "back": "A function f is continuous at point a if: (1) f(a) is defined, (2) lim_{x → a} f(x) exists, and (3) lim_{x → a} f(x) = f(a)."
+    },
+    {
+      "id": 3,
+      "topic": "Limits and Continuity",
+      "front": "What is a one-sided limit?",
+      "back": "A one-sided limit approaches a point from either the left (x → a-) or the right (x → a+). A limit exists if and only if both one-sided limits exist and are equal."
+    },
+    {
+      "id": 4,
+      "topic": "Limits and Continuity",
+      "front": "What is the Squeeze Theorem?",
+      "back": "If g(x) ≤ f(x) ≤ h(x) for all x near a (except possibly at a) and lim_{x → a} g(x) = lim_{x → a} h(x) = L, then lim_{x → a} f(x) = L."
+    },
+    {
+      "id": 5,
+      "topic": "Limits and Continuity",
+      "front": "What does lim_{x → ∞} f(x) = L mean?",
+      "back": "As x grows arbitrarily large, the values of f(x) get arbitrarily close to L."
+    },
+    {
+      "id": 6,
+      "topic": "Derivatives",
+      "front": "What is the definition of the derivative f'(a)?",
+      "back": "f'(a) = lim_{h → 0} [f(a+h) - f(a)]/h or equivalently, f'(a) = lim_{x → a} [f(x) - f(a)]/(x - a)"
+    },
+    {
+      "id": 7,
+      "topic": "Derivatives",
+      "front": "What does the derivative represent geometrically?",
+      "back": "The slope of the tangent line to the function at that point."
+    },
+    {
+      "id": 8,
+      "topic": "Derivatives",
+      "front": "What is the Power Rule for derivatives?",
+      "back": "If f(x) = x^n, then f'(x) = nx^(n-1)"
+    },
+    {
+      "id": 9,
+      "topic": "Derivatives",
+      "front": "What is the Product Rule?",
+      "back": "If h(x) = f(x) · g(x), then h'(x) = f'(x) · g(x) + f(x) · g'(x)"
+    },
+    {
+      "id": 10,
+      "topic": "Derivatives",
+      "front": "What is the Quotient Rule?",
+      "back": "If h(x) = f(x)/g(x), then h'(x) = [f'(x)g(x) - f(x)g'(x)]/[g(x)]^2"
+    },
+    {
+      "id": 11,
+      "topic": "Derivatives",
+      "front": "What is the Chain Rule?",
+      "back": "If h(x) = f(g(x)), then h'(x) = f'(g(x)) · g'(x)"
+    },
+    {
+      "id": 12,
+      "topic": "Derivatives",
+      "front": "What is the derivative of sin(x)?",
+      "back": "d/dx[sin(x)] = cos(x)"
+    },
+    {
+      "id": 13,
+      "topic": "Derivatives",
+      "front": "What is the derivative of cos(x)?",
+      "back": "d/dx[cos(x)] = -sin(x)"
+    },
+    {
+      "id": 14,
+      "topic": "Derivatives",
+      "front": "What is the derivative of e^x?",
+      "back": "d/dx[e^x] = e^x"
+    },
+    {
+      "id": 15,
+      "topic": "Derivatives",
+      "front": "What is the derivative of ln(x)?",
+      "back": "d/dx[ln(x)] = 1/x, for x > 0"
+    },
+    {
+      "id": 16,
+      "topic": "Applications of Derivatives",
+      "front": "What are critical points?",
+      "back": "Points where f'(x) = 0 or f'(x) is undefined."
+    },
+    {
+      "id": 17,
+      "topic": "Applications of Derivatives",
+      "front": "What is the First Derivative Test?",
+      "back": "If f'(x) changes from positive to negative at a critical point c, then f(c) is a local maximum. If f'(x) changes from negative to positive at c, then f(c) is a local minimum."
+    },
+    {
+      "id": 18,
+      "topic": "Applications of Derivatives",
+      "front": "What is the Second Derivative Test?",
+      "back": "If f'(c) = 0 and f''(c) < 0, then f(c) is a local maximum. If f'(c) = 0 and f''(c) > 0, then f(c) is a local minimum."
+    },
+    {
+      "id": 19,
+      "topic": "Applications of Derivatives",
+      "front": "When is a function increasing?",
+      "back": "A function is increasing on an interval if f'(x) > 0 for all x in that interval."
+    },
+    {
+      "id": 20,
+      "topic": "Applications of Derivatives",
+      "front": "When is a function decreasing?",
+      "back": "A function is decreasing on an interval if f'(x) < 0 for all x in that interval."
+    },
+    {
+      "id": 21,
+      "topic": "Applications of Derivatives",
+      "front": "What is concavity?",
+      "back": "A function is concave up on an interval if f''(x) > 0, and concave down if f''(x) < 0."
+    },
+    {
+      "id": 22,
+      "topic": "Applications of Derivatives",
+      "front": "What is an inflection point?",
+      "back": "A point where the concavity of a function changes (from up to down or vice versa)."
+    },
+    {
+      "id": 23,
+      "topic": "Applications of Derivatives",
+      "front": "What is L'Hôpital's Rule?",
+      "back": "If lim_{x → a} f(x)/g(x) gives the indeterminate form 0/0 or ∞/∞, then lim_{x → a} f(x)/g(x) = lim_{x → a} f'(x)/g'(x) (if the latter limit exists)."
+    },
+    {
+      "id": 24,
+      "topic": "Applications of Derivatives",
+      "front": "How do you find the absolute maximum and minimum values of a continuous function on a closed interval [a,b]?",
+      "back": "1) Find all critical points in (a,b). 2) Evaluate the function at these critical points and at the endpoints a and b. 3) The largest value is the absolute maximum, and the smallest value is the absolute minimum."
+    },
+    {
+      "id": 25,
+      "topic": "Applications of Derivatives",
+      "front": "What is the Mean Value Theorem?",
+      "back": "If f is continuous on [a,b] and differentiable on (a,b), then there exists at least one c in (a,b) such that f'(c) = [f(b) - f(a)]/(b - a)."
+    },
+    {
+      "id": 26,
+      "topic": "Applications of Derivatives",
+      "front": "What are linear approximations?",
+      "back": "f(x) ≈ f(a) + f'(a)(x - a) for x near a."
+    },
+    {
+      "id": 27,
+      "topic": "Applications of Derivatives",
+      "front": "What is Newton's Method?",
+      "back": "x_{n+1} = x_n - f(x_n)/f'(x_n), used to approximate solutions to the equation f(x) = 0."
+    },
+    {
+      "id": 28,
+      "topic": "Applications of Derivatives",
+      "front": "What is a related rates problem?",
+      "back": "A problem that involves finding the rate at which one quantity changes by relating it to other quantities whose rates of change are known."
+    },
+    {
+      "id": 29,
+      "topic": "Integrals",
+      "front": "What is an antiderivative?",
+      "back": "A function F is an antiderivative of f if F'(x) = f(x) for all x in the domain of f."
+    },
+    {
+      "id": 30,
+      "topic": "Integrals",
+      "front": "What is the indefinite integral ∫f(x)dx?",
+      "back": "The general antiderivative of f(x), which is F(x) + C, where F'(x) = f(x) and C is an arbitrary constant."
+    },
+    {
+      "id": 31,
+      "topic": "Integrals",
+      "front": "What is the definite integral ∫(a to b)f(x)dx?",
+      "back": "The limit of Riemann sums, which geometrically represents the signed area between the curve y = f(x) and the x-axis from x = a to x = b."
+    },
+    {
+      "id": 32,
+      "topic": "Integrals",
+      "front": "What is the Fundamental Theorem of Calculus (Part 1)?",
+      "back": "If f is continuous on [a,b] and F is an antiderivative of f, then ∫(a to b)f(x)dx = F(b) - F(a)."
+    },
+    {
+      "id": 33,
+      "topic": "Integrals",
+      "front": "What is the Fundamental Theorem of Calculus (Part 2)?",
+      "back": "If f is continuous on [a,b], then the function F(x) = ∫(a to x)f(t)dt is an antiderivative of f, which means F'(x) = f(x)."
+    },
+    {
+      "id": 34,
+      "topic": "Integrals",
+      "front": "What is the substitution rule for integration?",
+      "back": "∫f(g(x))g'(x)dx = ∫f(u)du where u = g(x) and du = g'(x)dx."
+    },
+    {
+      "id": 35,
+      "topic": "Integrals",
+      "front": "How do you integrate ∫x^n dx?",
+      "back": "∫x^n dx = x^(n+1)/(n+1) + C, for n ≠ -1."
+    },
+    {
+      "id": 36,
+      "topic": "Integrals",
+      "front": "How do you integrate ∫1/x dx?",
+      "back": "∫1/x dx = ln|x| + C."
+    },
+    {
+      "id": 37,
+      "topic": "Integrals",
+      "front": "How do you integrate ∫e^x dx?",
+      "back": "∫e^x dx = e^x + C."
+    },
+    {
+      "id": 38,
+      "topic": "Integrals",
+      "front": "How do you integrate ∫sin(x) dx?",
+      "back": "∫sin(x) dx = -cos(x) + C."
+    },
+    {
+      "id": 39,
+      "topic": "Integrals",
+      "front": "How do you integrate ∫cos(x) dx?",
+      "back": "∫cos(x) dx = sin(x) + C."
+    },
+    {
+      "id": 40,
+      "topic": "Applications of Integrals",
+      "front": "How do you find the area between two curves y = f(x) and y = g(x) from x = a to x = b, where f(x) ≥ g(x)?",
+      "back": "Area = ∫(a to b)[f(x) - g(x)]dx."
+    },
+    {
+      "id": 41,
+      "topic": "Applications of Integrals",
+      "front": "What is the average value of a function f(x) on the interval [a,b]?",
+      "back": "Average value = (1/(b-a))∫(a to b)f(x)dx."
+    },
+    {
+      "id": 42,
+      "topic": "Applications of Integrals",
+      "front": "How do you find the volume of a solid of revolution using the disk method?",
+      "back": "Volume = ∫(a to b)π[f(x)]^2 dx when rotating around the x-axis."
+    },
+    {
+      "id": 43,
+      "topic": "Applications of Integrals",
+      "front": "How do you find the volume of a solid of revolution using the shell method?",
+      "back": "Volume = ∫(a to b)2πx·f(x) dx when rotating around the y-axis."
+    },
+    {
+      "id": 44,
+      "topic": "Applications of Integrals",
+      "front": "How do you find the arc length of a curve y = f(x) from x = a to x = b?",
+      "back": "Arc length = ∫(a to b)√(1 + [f'(x)]^2) dx."
+    },
+    {
+      "id": 45,
+      "topic": "Applications of Integrals",
+      "front": "What is the work done by a variable force F(x) acting in the direction of motion from x = a to x = b?",
+      "back": "Work = ∫(a to b)F(x) dx."
+    },
+    {
+      "id": 46,
+      "topic": "Techniques of Integration",
+      "front": "What is integration by parts?",
+      "back": "∫u dv = uv - ∫v du, where u and v are functions of x."
+    },
+    {
+      "id": 47,
+      "topic": "Techniques of Integration",
+      "front": "What is the formula for integration by partial fractions?",
+      "back": "Decompose a rational function into simpler fractions that can be integrated individually."
+    },
+    {
+      "id": 48,
+      "topic": "Techniques of Integration",
+      "front": "How do you integrate ∫sec^2(x) dx?",
+      "back": "∫sec^2(x) dx = tan(x) + C."
+    },
+    {
+      "id": 49,
+      "topic": "Techniques of Integration",
+      "front": "How do you integrate ∫tan(x) dx?",
+      "back": "∫tan(x) dx = -ln|cos(x)| + C = ln|sec(x)| + C."
+    },
+    {
+      "id": 50,
+      "topic": "Techniques of Integration",
+      "front": "What are improper integrals?",
+      "back": "Integrals with infinite limits of integration or integrals of functions with vertical asymptotes in the interval of integration."
+    }
+  ]
+}

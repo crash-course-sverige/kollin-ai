@@ -8,7 +8,8 @@ import {
   ChevronDown, 
   ChevronRight, 
   GraduationCap, 
-  Network
+  Network,
+  WalletCards
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -63,6 +64,13 @@ export function CoursesSidebar() {
             href="/courses"
             label="All Courses"
             icon={BookOpen}
+          />
+          
+          <NavItem
+            isActive={pathname === "/courses/flashcards"}
+            href="/courses/flashcards"
+            label="Flash Cards"
+            icon={WalletCards}
           />
           
           <div className="py-2">

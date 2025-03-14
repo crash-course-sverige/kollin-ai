@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid, varchar, primaryKey } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid, varchar, primaryKey, integer } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
@@ -15,6 +15,7 @@ export const users = pgTable("users", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
+  flashcardProgress: many(flashcardProgress),
 }));
 
 export const sessions = pgTable("sessions", {
@@ -29,6 +30,29 @@ export const sessions = pgTable("sessions", {
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, {
     fields: [sessions.userId],
+    references: [users.id],
+  }),
+}));
+
+// Flashcard progress table to track user progress on each flashcard
+export const flashcardProgress = pgTable("flashcard_progress", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  flashcardId: integer("flashcard_id").notNull(),
+  setId: text("set_id").notNull(), // Identifier for the flashcard set (e.g., "calculus")
+  difficulty: varchar("difficulty", { length: 10 }).notNull(), // 'easy', 'medium', 'hard'
+  lastReviewed: timestamp("last_reviewed").defaultNow().notNull(),
+  nextReviewDate: timestamp("next_review_date"), // For spaced repetition in the future
+  reviewCount: integer("review_count").default(1).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const flashcardProgressRelations = relations(flashcardProgress, ({ one }) => ({
+  user: one(users, {
+    fields: [flashcardProgress.userId],
     references: [users.id],
   }),
 }));
@@ -53,6 +77,9 @@ export type NewUser = typeof users.$inferInsert;
 
 export type Session = typeof sessions.$inferSelect;
 export type NewSession = typeof sessions.$inferInsert;
+
+export type FlashcardProgress = typeof flashcardProgress.$inferSelect;
+export type NewFlashcardProgress = typeof flashcardProgress.$inferInsert;
 
 export type VerificationToken = typeof verificationTokens.$inferSelect;
 export type NewVerificationToken = typeof verificationTokens.$inferInsert; 
