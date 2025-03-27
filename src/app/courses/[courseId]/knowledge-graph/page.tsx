@@ -4,7 +4,7 @@ import { getCourseById } from "@/lib/courses/data";
 import { getKnowledgeGraphData } from "@/lib/courses/graph";
 import { Card } from "@/components/ui/card";
 import { KnowledgeGraphClientWrapper } from "@/components/courses/knowledge-graph/client-wrapper";
-
+import { getCourseNodes } from "@/lib/actions/course";
 export async function generateMetadata({
   params,
 }: {
@@ -29,31 +29,32 @@ export default async function KnowledgeGraphPage({
 }: {
   params: { courseId: string };
 }) {
-  const course = await getCourseById(params.courseId);
+  //const course = await getCourseById(params.courseId);
+  const course = await getCourseNodes("Linjär_Algebra_Agents2");
   
   if (!course) {
     notFound();
   }
   
   // Fetch knowledge graph data
-  const graphData = await getKnowledgeGraphData(params.courseId);
+  //const graphData = await getKnowledgeGraphData("Linjär_Algebra_Agents2");
   
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">
-          {course.title} - Knowledge Graph
+          Linjär Algebra - Knowledge Graph
         </h1>
         <p className="text-muted-foreground mt-2">
           Explore the relationships between different concepts in this course.
         </p>
       </div>
       
-      <Card className="p-6">
-        <div className="h-[600px] w-full">
-          <KnowledgeGraphClientWrapper data={graphData} />
-        </div>
-      </Card>
+      {/* <Card className="p-6">
+        <div className="h-[600px] w-full"> */}
+          <KnowledgeGraphClientWrapper data={course} />
+        {/* </div>
+      </Card> */}
     </div>
   );
 } 

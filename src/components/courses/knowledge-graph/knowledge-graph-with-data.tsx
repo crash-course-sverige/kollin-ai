@@ -20,6 +20,7 @@ async function fetchKnowledgeGraphData(): Promise<KnowledgeGraphData> {
         c.category as category,
         c.difficulty as difficulty,
         c.formula as formula
+      
     `) as Neo4jQueryResult;
     
     // Query to get all relationships between concepts

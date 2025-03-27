@@ -30,12 +30,12 @@ const CONCEPT_RELATIONSHIPS: Record<string, Array<{ target: string; type: string
 /**
  * Get knowledge graph data for visualization from Neo4j
  */
-export async function getKnowledgeGraphData(courseId: string): Promise<KnowledgeGraphData> {
+export async function getKnowledgeGraphData(datasetName: string): Promise<KnowledgeGraphData> {
   try {
     // Try to fetch data from Neo4j
     const result = await runNeo4jQuery(
       `
-      MATCH (c:Course {id: $courseId})-[:CONTAINS]->(concept:Concept)
+      MATCH (c:dataset {id: $datasetName})-[:CONTAINS]->(concept:Concept)
       WITH concept
       OPTIONAL MATCH (concept)-[r]->(related:Concept)
       RETURN collect(distinct concept) as concepts, 
@@ -46,9 +46,11 @@ export async function getKnowledgeGraphData(courseId: string): Promise<Knowledge
                label: r.label
              }) as relationships
       `,
-      { courseId }
+      { datasetName }
     );
     
+    const result = await runNeo4jQuery("MATCH (n:`$datasetName`) RETURN n;", {datasetName})
+
     // Extract nodes from the result
     const concepts = result[0]?.concepts as { properties: { id: string; name: string; description: string } }[] || [];
     const relationships = result[0]?.relationships as { source: string; target: string; type: string; label?: string }[] || [];
@@ -81,12 +83,12 @@ export async function getKnowledgeGraphData(courseId: string): Promise<Knowledge
     
     // If no Neo4j data, use mock data
     console.log('No Neo4j data found, using mock data for knowledge graph');
-    return await getMockKnowledgeGraphData(courseId);
+    return await getMockKnowledgeGraphData(datasetName);
   } catch (error) {
     console.error('Error fetching Neo4j knowledge graph data:', error);
     // Fallback to mock data in case of error
     console.log('Using mock data for knowledge graph due to Neo4j error');
-    return await getMockKnowledgeGraphData(courseId);
+    return await getMockKnowledgeGraphData(datasetName);
   }
 }
 

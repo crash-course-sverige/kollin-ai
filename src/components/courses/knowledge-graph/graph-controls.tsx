@@ -19,6 +19,7 @@ export default function GraphControls({
   setVisibleRelationships
 }: GraphControlsProps) {
   const [showTips, setShowTips] = useState(false);
+  const [showAllTypes, setShowAllTypes] = useState(false);
 
   // Toggle a specific relationship type
   const toggleRelationship = (type: string) => {
@@ -49,7 +50,12 @@ export default function GraphControls({
       .replace(/_/g, ' ')
       .replace(/\b\w/g, char => char.toUpperCase());
   };
-  
+
+  // Get either all types or just the first 5
+  const visibleTypes = showAllTypes 
+    ? relationshipTypes 
+    : relationshipTypes.slice(0, 5);
+
   return (
     <Card className="bg-white dark:bg-gray-900">
       <CardHeader className="pb-3">
@@ -109,7 +115,7 @@ export default function GraphControls({
           </div>
 
           <div className="space-y-2">
-            {relationshipTypes.map(type => (
+            {visibleTypes.map(type => (
               <div key={type} className="flex items-center space-x-2">
                 <Checkbox 
                   id={`relationship-${type}`}
@@ -124,6 +130,16 @@ export default function GraphControls({
                 </Label>
               </div>
             ))}
+            {!showAllTypes && relationshipTypes.length > 5 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="mt-2"
+                onClick={() => setShowAllTypes(true)}
+              >
+                See All ({relationshipTypes.length - 5} more)
+              </Button>
+            )}
           </div>
         </div>
       </CardContent>

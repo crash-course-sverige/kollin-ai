@@ -4,7 +4,7 @@ let driver: Driver | null = null;
 
 export function getNeo4jDriver(): Driver {
   if (!driver) {
-    const uri = process.env.NEO4J_URI || 'neo4j+s://77376a67.databases.neo4j.io';
+    const uri = process.env.NEO4J_URI || 'neo4j+s://0bbc9bc0.databases.neo4j.io';
     const username = process.env.NEO4J_USERNAME || 'neo4j';
     const password = process.env.NEO4J_PASSWORD || '';
 

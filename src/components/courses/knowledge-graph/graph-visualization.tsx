@@ -31,11 +31,17 @@ interface GraphVisualizationProps {
 export default function GraphVisualization({ data }: GraphVisualizationProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [selectedNode, setSelectedNode] = useState<KnowledgeGraphNode | null>(null);
-  const [visibleRelationships, setVisibleRelationships] = useState<Record<string, boolean>>({
-    "PREREQUISITE_FOR": true,
-    "PART_OF": true,
-    "APPLIED_IN": true,
-    "RELATED_TO": true,
+  
+  // Log all relationship types we receive
+  console.log("All relationship types:", Array.from(new Set(data.links.map(link => link.type))));
+  
+  // Initialize visible relationships with all types we receive
+  const [visibleRelationships, setVisibleRelationships] = useState<Record<string, boolean>>(() => {
+    const allTypes = Array.from(new Set(data.links.map(link => link.type)));
+    return allTypes.reduce((acc, type) => {
+      acc[type] = true;
+      return acc;
+    }, {} as Record<string, boolean>);
   });
 
   // Extract all unique relationship types from the data
@@ -45,9 +51,11 @@ export default function GraphVisualization({ data }: GraphVisualizationProps) {
 
   // Filter links based on visible relationships
   const getVisibleLinks = () => {
-    return data.links.filter(link => 
+    const visibleLinks = data.links.filter(link => 
       link.type && visibleRelationships[link.type]
     );
+    console.log("Visible links:", visibleLinks.length, "of", data.links.length);
+    return visibleLinks;
   };
 
   // Update the visualization when data or visible relationships change
