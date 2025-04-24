@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid, varchar, primaryKey, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid, varchar, primaryKey, integer, foreignKey, boolean, serial, index, vector, doublePrecision, unique } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
@@ -71,6 +71,125 @@ export const verificationTokens = pgTable(
   })
 );
 
+export const chapters = pgTable(
+	"chapters",
+	{
+		id: serial().notNull(),
+		chapterType: varchar("chapter_type", { length: 255 }).notNull(),
+		name: varchar({ length: 255 }),
+		title: varchar({ length: 255 }),
+		markdown: text(),
+		html: text(),
+		raw_content: text(),
+		creator: integer().default(1),
+		locked: boolean().default(false),
+		createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+			.defaultNow()
+			.notNull(),
+		published: boolean().default(false),
+		courseId: integer("course_id"),
+		embedding: vector("embedding", { dimensions: 1536 }),
+	},
+	(table) => {
+		return [
+			index("chapters_embedding_idx").using(
+				"hnsw",
+				table.embedding.asc().nullsLast().op("vector_cosine_ops"),
+			),
+			index("idx_chapter_type").using(
+				"btree",
+				table.chapterType.asc().nullsLast(),
+			),
+			foreignKey({
+				columns: [table.courseId],
+				foreignColumns: [courses.id],
+				name: "chapters_course_id_fkey",
+			}),
+			foreignKey({
+				columns: [table.creator],
+				foreignColumns: [users.id],
+				name: "chapters_creator_fkey",
+			}).onDelete("set default"),
+			primaryKey({
+				columns: [table.id, table.chapterType],
+				name: "chapters_pkey",
+			}),
+		];
+	},
+);
+
+export const courses = pgTable(
+	"courses",
+	{
+		id: serial().primaryKey().notNull(),
+		name: varchar({ length: 255 }),
+		icon: varchar({ length: 255 }),
+		code: varchar({ length: 255 }),
+		color: varchar({ length: 255 }),
+		description: text(),
+		published: boolean(),
+		publicTagging: boolean("public_tagging"),
+		price: integer(),
+		subjectId: integer("subject_id"),
+		schoolId: integer("school_id").default(1),
+		createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+			.defaultNow()
+			.notNull(),
+		lang: varchar({ length: 255 }).default("sv"),
+		visits: integer().default(0),
+		credits: doublePrecision(),
+	},
+	(table) => {
+		return [
+			foreignKey({
+				columns: [table.schoolId],
+				foreignColumns: [schools.id],
+				name: "courses_school_id_fkey",
+			}),
+			foreignKey({
+				columns: [table.subjectId],
+				foreignColumns: [subjects.id],
+				name: "courses_subject_id_fkey",
+			}),
+		];
+	},
+);
+
+export const schools = pgTable(
+	"schools",
+	{
+		id: serial().primaryKey().notNull(),
+		name: varchar({ length: 255 }),
+		nickname: varchar({ length: 255 }),
+		createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+			.defaultNow()
+			.notNull(),
+	},
+	(table) => {
+		return [unique("schools_name_key").on(table.name)];
+	},
+);
+
+export const subjects = pgTable("subjects", {
+	id: serial().primaryKey().notNull(),
+	name: varchar({ length: 255 }),
+	createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+		.defaultNow()
+		.notNull(),
+	updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+		.defaultNow()
+		.notNull(),
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -83,3 +202,6 @@ export type NewFlashcardProgress = typeof flashcardProgress.$inferInsert;
 
 export type VerificationToken = typeof verificationTokens.$inferSelect;
 export type NewVerificationToken = typeof verificationTokens.$inferInsert; 
+
+export type Chapter = typeof chapters.$inferSelect;
+export type NewChapter = typeof chapters.$inferInsert;

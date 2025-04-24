@@ -1,6 +1,6 @@
 # Modern Next.js Application
 
-A modern, type-safe Next.js 15 application with role-based authentication, responsive design, and a feature-based architecture.
+A modern, type-safe Next.js 15 application with responsive design and a feature-based architecture.
 
 ## Tech Stack
 
@@ -10,11 +10,9 @@ A modern, type-safe Next.js 15 application with role-based authentication, respo
 - **shadcn/ui** component library
 - **Drizzle ORM** for database operations
 - **PostgreSQL** as the database
-- **NextAuth.js** for authentication
 
 ## Features
 
-- **Authentication** with role-based access control
 - **Responsive Dashboard** that works on mobile, tablet, and desktop
 - **Dark/Light Theme** support
 - **User Management** with sorting, filtering, and pagination
@@ -36,8 +34,7 @@ src/
 │   ├── users/            # User management components
 │   └── settings/         # Settings-related components
 ├── lib/                  # Shared utility libraries
-│   ├── db/               # Database schema and queries
-│   └── auth.ts           # Authentication configuration
+│   └── db/               # Database schema and queries
 ├── hooks/                # Custom React hooks
 └── types/                # TypeScript type definitions
 ```
@@ -103,6 +100,6 @@ pnpm lint
 
 This application can be deployed to Vercel, Netlify, or any other platform that supports Next.js applications.
 
-When deploying, make sure to set up the appropriate environment variables for your database connection and authentication.
+When deploying, make sure to set up the appropriate environment variables for your database connection.
 
 <!-- Testing GitHub Actions deployment to Vercel: Update 1 -->

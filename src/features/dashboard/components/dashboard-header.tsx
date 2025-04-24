@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Menu, User, LogOut, Settings } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,8 @@ interface DashboardHeaderProps {
 }
 
 export function DashboardHeader({ user }: DashboardHeaderProps) {
+  const router = useRouter();
+  
   // Get user initials for avatar fallback
   const initials = user.name
     ? user.name
@@ -35,6 +37,11 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
         .join("")
         .toUpperCase()
     : "U";
+
+  const handleLogout = () => {
+    // Since we removed auth, this just navigates to home
+    router.push("/");
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background">
@@ -90,7 +97,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer"
-                onClick={() => signOut({ callbackUrl: "/" })}
+                onClick={handleLogout}
               >
                 <LogOut className="mr-2 h-4 w-4" />
                 Log out

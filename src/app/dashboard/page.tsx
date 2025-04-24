@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart3, Users, FileText, Activity } from "lucide-react";
 
@@ -9,19 +7,18 @@ export const metadata: Metadata = {
   description: "Dashboard overview",
 };
 
-export default async function DashboardPage() {
-  const session = await getServerSession(authOptions);
-  
-  if (!session) {
-    return null;
-  }
+export default function DashboardPage() {
+  // Mock user data since we removed authentication
+  const user = {
+    name: "Demo User"
+  };
   
   return (
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome back, {session.user.name || "User"}!
+          Welcome back, {user.name}!
         </p>
       </div>
       

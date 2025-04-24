@@ -42,7 +42,6 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         env:
-          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NEO4J_URI: ${{ secrets.NEO4J_URI }}
           NEO4J_USERNAME: ${{ secrets.NEO4J_USERNAME }}

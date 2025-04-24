@@ -1,8 +1,4 @@
 import { Metadata } from "next";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-
-import { authOptions } from "@/lib/auth";
 import { SettingsForm } from "@/features/settings/components/settings-form";
 
 export const metadata: Metadata = {
@@ -10,12 +6,15 @@ export const metadata: Metadata = {
   description: "Manage your account settings",
 };
 
-export default async function SettingsPage() {
-  const session = await getServerSession(authOptions);
-  
-  if (!session) {
-    redirect("/auth/login?callbackUrl=/dashboard/settings");
-  }
+export default function SettingsPage() {
+  // Mock user data since we removed authentication
+  const user = {
+    id: "user-1",
+    name: "Demo User",
+    email: "user@example.com",
+    image: null,
+    role: "user"
+  };
   
   return (
     <div className="flex flex-col gap-4">
@@ -27,7 +26,7 @@ export default async function SettingsPage() {
       </div>
       
       <div className="grid gap-6">
-        <SettingsForm user={session.user} />
+        <SettingsForm user={user} />
       </div>
     </div>
   );

@@ -5,8 +5,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarkdownMath } from "@/components/ui/markdown-math";
 import { ProgressBar } from "@/components/ui/progress-bar";
-import { saveFlashcardProgress } from "@/lib/actions/flashcard-progress";
-import { useSession } from "next-auth/react";
 
 interface FlashCard {
   id: number;
@@ -26,7 +24,6 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
   const [isFlipped, setIsFlipped] = useState(false);
   const [cardDifficulties, setCardDifficulties] = useState<Record<number, Difficulty>>({});
   const [isPending, startTransition] = useTransition();
-  const { data: session } = useSession();
 
   // Statistics state
   const [statistics, setStatistics] = useState({
@@ -101,20 +98,15 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
       [currentCard.id]: difficulty
     }));
     
-    // If user is logged in, save to database
-    if (session?.user) {
-      startTransition(async () => {
-        try {
-          await saveFlashcardProgress(
-            currentCard.id,
-            setId,
-            difficulty
-          );
-        } catch (error) {
-          console.error("Failed to save progress:", error);
-        }
-      });
-    }
+    // Simulate a delay for saving progress
+    startTransition(async () => {
+      try {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 500));
+      } catch (error) {
+        console.error("Failed to save progress:", error);
+      }
+    });
   };
 
   const currentCard = cards[currentCardIndex];
