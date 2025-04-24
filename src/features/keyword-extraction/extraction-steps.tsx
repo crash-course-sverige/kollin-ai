@@ -5,7 +5,7 @@ import CourseSelectionForm from "./course-selection-form";
 import KeywordApproval from "./keyword-approval";
 import RelationApproval from "./relation-approval";
 
-export default function ExtractionSteps() {
+export default function ExtractionSteps({ courses }: { courses: { id: number, name: string | null }[] }) {
   const [step, setStep] = useState(1);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
@@ -46,6 +46,7 @@ export default function ExtractionSteps() {
             selectedChapters={selectedChapters}
             setSelectedChapters={setSelectedChapters}
             onNext={nextStep}
+            courses={courses}
           />
         );
       case 2:
