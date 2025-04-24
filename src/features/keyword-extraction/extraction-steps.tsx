@@ -4,24 +4,52 @@ import { useState, useEffect } from "react";
 import CourseSelectionForm from "./course-selection-form";
 import KeywordApproval from "./keyword-approval";
 import RelationApproval from "./relation-approval";
+import { extractKeywordsFromCourseChapters } from "./actions/extract-keywords-from-course-chapters";
 
 export default function ExtractionSteps({ courses }: { courses: { id: number, name: string | null }[] }) {
   const [step, setStep] = useState(1);
-  const [selectedCourse, setSelectedCourse] = useState("");
-  const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<{ id: number | null, name: string }>({ id: null, name: "" });
+  const [selectedChapters, setSelectedChapters] = useState<{ id: number, name: string }[]>([]);
   const [extractedKeywords, setExtractedKeywords] = useState<string[]>([]);
   const [approvedKeywords, setApprovedKeywords] = useState<string[]>([]);
   const [relations, setRelations] = useState<{source: string, target: string, type: string}[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isLoadingKeywords, setIsLoadingKeywords] = useState(false);
+
+  console.log("selectedChapters", selectedChapters);
 
   // When chapters are selected, fetch keywords
   useEffect(() => {
     if (step === 2 && selectedChapters.length > 0 && extractedKeywords.length === 0) {
-      // This would be replaced by an actual API call
-      // fetchKeywordsForChapters(selectedCourse, selectedChapters)
-      //   .then(keywords => setExtractedKeywords(keywords));
+      const fetchKeywords = async () => {
+        if (selectedCourse.id !== null) {
+          try {
+            setIsLoadingKeywords(true);
+            // Extract chapter IDs from selectedChapters
+            const chapterIds = selectedChapters.map(chapter => chapter.id);
+            
+            // Call the keyword extraction function
+            const chaptersWithKeywords = await extractKeywordsFromCourseChapters({
+              courseId: selectedCourse.id, 
+              chapterIds
+            });
+            
+            // Flatten all keywords from all chapters
+            const allKeywords = chaptersWithKeywords
+              .filter(chapter => chapter !== null)
+              .flatMap(chapter => chapter?.keywords || []);
+            
+            // Set the extracted keywords
+            setExtractedKeywords(allKeywords);
+          } catch (error) {
+            console.error("Error extracting keywords:", error);
+          } finally {
+            setIsLoadingKeywords(false);
+          }
+        }
+      };
       
-      // For now, we'll let the KeywordApproval component handle demo data
+      fetchKeywords();
     }
   }, [step, selectedChapters, selectedCourse, extractedKeywords.length]);
 
@@ -52,7 +80,7 @@ export default function ExtractionSteps({ courses }: { courses: { id: number, na
       case 2:
         return (
           <KeywordApproval
-            keywords={extractedKeywords}
+            keywords={isLoadingKeywords ? [] : extractedKeywords}
             approvedKeywords={approvedKeywords}
             setApprovedKeywords={setApprovedKeywords}
             onNext={nextStep}
@@ -87,7 +115,7 @@ export default function ExtractionSteps({ courses }: { courses: { id: number, na
           <button
             onClick={() => {
               setStep(1);
-              setSelectedCourse("");
+              setSelectedCourse({ id: null, name: "" });
               setSelectedChapters([]);
               setExtractedKeywords([]);
               setApprovedKeywords([]);

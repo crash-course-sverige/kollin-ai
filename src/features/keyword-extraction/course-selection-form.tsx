@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -32,10 +31,10 @@ interface Chapter {
 }
 
 interface CourseSelectionFormProps {
-  selectedCourse: string;
-  setSelectedCourse: (course: string) => void;
-  selectedChapters: string[];
-  setSelectedChapters: (chapters: string[]) => void;
+  selectedCourse: { id: number | null, name: string };
+  setSelectedCourse: (course: { id: number | null, name: string }) => void;
+  selectedChapters: { id: number, name: string }[];
+  setSelectedChapters: (chapters: { id: number, name: string }[]) => void;
   courses: { id: number, name: string | null }[];
   onNext: () => void;
 }
@@ -53,7 +52,7 @@ export default function CourseSelectionForm({
   
   // Fetch chapters when course selection changes
   useEffect(() => {
-    if (!selectedCourse) {
+    if (!selectedCourse?.id) {
       setChapters([]);
       return;
     }
@@ -61,12 +60,10 @@ export default function CourseSelectionForm({
     const fetchChapters = async () => {
       try {
         setLoading(true);
-        // Find the course ID from the selected course name
-        const selectedCourseObj = courses.find(course => course.name === selectedCourse);
-        
-        if (selectedCourseObj) {
-          const chaptersData = await getTheoryChaptersByCourseId(selectedCourseObj.id);
-          setChapters(chaptersData);
+        // Ensure we have a non-null ID
+        if (selectedCourse.id !== null) {
+          const chaptersData = await getTheoryChaptersByCourseId(selectedCourse.id);
+          setChapters(chaptersData as Chapter[]);
         }
       } catch (error) {
         console.error("Error fetching chapters:", error);
@@ -76,7 +73,7 @@ export default function CourseSelectionForm({
     };
 
     fetchChapters();
-  }, [selectedCourse, courses]);
+  }, [selectedCourse]);
 
   // Get the display name for a chapter
   const getChapterName = (chapter: Chapter): string => {
@@ -87,16 +84,16 @@ export default function CourseSelectionForm({
   // Check if a chapter is in the selected chapters
   const isChapterSelected = (chapter: Chapter): boolean => {
     const chapterName = getChapterName(chapter);
-    return selectedChapters.includes(chapterName);
+    return selectedChapters.some(c => c.name === chapterName);
   };
 
   const handleChapterChange = (chapter: Chapter, checked: boolean) => {
     const chapterName = getChapterName(chapter);
     
     if (checked) {
-      setSelectedChapters([...selectedChapters, chapterName]);
+      setSelectedChapters([...selectedChapters, { id: chapter.id, name: chapterName } ]);
     } else {
-      setSelectedChapters(selectedChapters.filter(c => c !== chapterName));
+      setSelectedChapters(selectedChapters.filter(c => c.id !== chapter.id));
     }
   };
 
@@ -105,8 +102,14 @@ export default function CourseSelectionForm({
       <div className="space-y-2">
         <Label htmlFor="course-select">Select Course</Label>
         <Select 
-          value={selectedCourse} 
-          onValueChange={setSelectedCourse} 
+          value={selectedCourse.name} 
+          onValueChange={(value) => {
+            const selectedCourseObj = courses.find(course => course.name === value);
+            setSelectedCourse({ 
+              id: selectedCourseObj?.id || null, 
+              name: value 
+            });
+          }} 
           disabled={loading}
         >
           <SelectTrigger className="w-full" id="course-select">

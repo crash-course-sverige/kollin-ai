@@ -17,38 +17,17 @@ export default function KeywordApproval({
   onNext,
   onBack,
 }: KeywordApprovalProps) {
-  const [loading, setLoading] = useState(false);
   const [localKeywords, setLocalKeywords] = useState<{word: string, approved: boolean}[]>([]);
 
-  // For demo purposes, populate with sample keywords if empty
+  // Set local keywords based on incoming keywords props
   useEffect(() => {
-    if (keywords.length === 0) {
-      setLoading(true);
-      
-      // Simulate API call to extract keywords
-      setTimeout(() => {
-        const demoKeywords = [
-          "Algorithm", "Data Structure", "Variable", "Function", 
-          "Loop", "Condition", "Object", "Array", "Recursion",
-          "Complexity", "Big O Notation", "Sorting", "Binary Tree",
-          "Hash Table", "Queue", "Stack", "Linked List", "Graph",
-          "Dynamic Programming", "Greedy Algorithm"
-        ];
-        
-        setLocalKeywords(demoKeywords.map(word => ({
-          word,
-          approved: approvedKeywords.includes(word)
-        })));
-        
-        setLoading(false);
-      }, 1000);
-    } else {
+    if (keywords.length > 0) {
       setLocalKeywords(keywords.map(word => ({
         word,
         approved: approvedKeywords.includes(word)
       })));
     }
-  }, [keywords]);
+  }, [keywords, approvedKeywords]);
 
   const toggleKeyword = (index: number) => {
     const updatedKeywords = [...localKeywords];
@@ -76,7 +55,7 @@ export default function KeywordApproval({
           Approve or reject each keyword.
         </p>
         
-        {loading ? (
+        {keywords.length === 0 ? (
           <div className="flex justify-center py-8">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
@@ -121,9 +100,9 @@ export default function KeywordApproval({
         </button>
         <button
           onClick={handleSaveAndContinue}
-          disabled={approvedKeywords.length < 2 || loading}
+          disabled={approvedKeywords.length < 2}
           className={`px-4 py-2 rounded-md text-white ${
-            approvedKeywords.length < 2 || loading
+            approvedKeywords.length < 2
               ? "bg-gray-300 cursor-not-allowed"
               : "bg-blue-600 hover:bg-blue-700"
           }`}

@@ -7,14 +7,12 @@ import { CourseChapterTextData } from "./get-course-chapter-with-text-data";
 
 
 export async function extractKeywordsFromChapters(courseChaptersTexts: CourseChapterTextData) {
-
-  const chaptersWithGeneratedKeywords = [];
-  
-  for (const courseChapterText of courseChaptersTexts) {
+  const chapterPromises = courseChaptersTexts.map(async (courseChapterText) => {
     if (!courseChapterText.markdown) {
       console.error("❌ No markdown found for chapter. Skipping...");
-      continue;
+      return null;
     }
+    
     const { object } = await generateObject({
       model: anthropic("claude-3-7-sonnet-20250219"),
       schema: z.object({
@@ -27,14 +25,17 @@ export async function extractKeywordsFromChapters(courseChaptersTexts: CourseCha
     console.log(`✅ Keywords successfully extracted for chapter "${courseChapterText.title}"`);
     console.log("✅ Keywords: \n", object.keywords);
 
-    chaptersWithGeneratedKeywords.push({
+    return {
       keywords: object.keywords,
       chapterId: courseChapterText.chapterId,
       chapterTitle: courseChapterText.title,
-    });
-  }
-
-  return chaptersWithGeneratedKeywords;
+    };
+  });
+  
+  const results = await Promise.all(chapterPromises);
+  
+  // Filter out null results (chapters without markdown)
+  return results.filter(Boolean);
   
 }
 
