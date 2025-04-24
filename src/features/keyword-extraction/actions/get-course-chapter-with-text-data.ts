@@ -9,7 +9,7 @@ import { eq, inArray, not, sql } from "drizzle-orm";
 import { tagContent } from "@/lib/db/schema/tag-content.schema";
 import { db } from "@/lib/db/db";
 
-export async function getCourseChapterTexts(courseId: number, chapterIds: number[]) {
+export async function getCourseChapterTextData(courseId: number, chapterIds: number[]) {
   if (chapterIds.length === 0) {
     console.log("🚫 No chapter ids provided");
     return [];
@@ -53,3 +53,5 @@ export async function getCourseChapterTexts(courseId: number, chapterIds: number
   console.log("🔍 Results:\n", results);
   return results;
 }
+
+export type CourseChapterTextData = Awaited<ReturnType<typeof getCourseChapterTextData>>;

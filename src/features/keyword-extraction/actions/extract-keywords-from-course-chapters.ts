@@ -1,6 +1,7 @@
 "use server";
 
-import { getCourseChapterTexts } from "./get-course-chapter-texts";
+import { extractKeywordsFromChapters } from "./extract-keywords-from-chapters";
+import { getCourseChapterTextData } from "./get-course-chapter-with-text-data";
 
 interface CreateGraphParams {
   courseId: number;
@@ -13,12 +14,9 @@ export async function extractKeywordsFromCourseChapters({
 }: CreateGraphParams) {
   console.log("Extracting keywords from course chapters");
 
-  const courseChaptersTexts = await getCourseChapterTexts(courseId, chapterIds);
-
-  const keywords = await extractKeywordsFromSingleChapter(courseChaptersTexts);
-
-
-
-
+  const courseChaptersWithTextData = await getCourseChapterTextData(courseId, chapterIds);
   
+  const chaptersWithGeneratedKeywords = await extractKeywordsFromChapters(courseChaptersWithTextData);
+
+  return chaptersWithGeneratedKeywords;
 }

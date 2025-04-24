@@ -7,6 +7,7 @@ const envSchema = z.object({
   NEO4J_URI: z.string().optional().default("neo4j://localhost:7687"),
   NEO4J_USERNAME: z.string().optional().default("neo4j"),
   NEO4J_PASSWORD: z.string().optional(),
+  ANTHROPIC_API_KEY: z.string().optional(),
 });
 
 /**
@@ -19,6 +20,7 @@ export const env = envSchema.parse({
   NEO4J_URI: process.env.NEO4J_URI,
   NEO4J_USERNAME: process.env.NEO4J_USERNAME,
   NEO4J_PASSWORD: process.env.NEO4J_PASSWORD,
+  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
 }); 
 
 
