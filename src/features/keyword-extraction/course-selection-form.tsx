@@ -1,12 +1,42 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { getTheoryChaptersByCourseId } from "@/actions/course";
+
+// Define the chapter type based on the database schema
+interface Chapter {
+  id: number;
+  title?: string | null;
+  name?: string | null;
+  chapterType?: string;
+  markdown?: string | null;
+  html?: string | null;
+  raw_content?: string | null;
+  creator?: number | null;
+  locked?: boolean | null;
+  courseId?: number | null;
+  embedding?: number[] | null;
+  rowIndex?: number;
+  courseName?: string | null;
+}
 
 interface CourseSelectionFormProps {
   selectedCourse: string;
   setSelectedCourse: (course: string) => void;
   selectedChapters: string[];
   setSelectedChapters: (chapters: string[]) => void;
+  courses: { id: number, name: string | null }[];
   onNext: () => void;
 }
 
@@ -15,129 +45,138 @@ export default function CourseSelectionForm({
   setSelectedCourse,
   selectedChapters,
   setSelectedChapters,
+  courses,
   onNext,
 }: CourseSelectionFormProps) {
-  const [courses, setCourses] = useState<string[]>([]);
-  const [chapters, setChapters] = useState<string[]>([]);
+  const [chapters, setChapters] = useState<Chapter[]>([]);
   const [loading, setLoading] = useState(false);
-
-  // Simulate fetching courses
+  
+  // Fetch chapters when course selection changes
   useEffect(() => {
-    // TODO: Replace with actual API call
-    const fetchCourses = async () => {
-      setLoading(true);
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setCourses(['Computer Science 101', 'Data Structures', 'Machine Learning', 'Web Development']);
-      setLoading(false);
-    };
-
-    fetchCourses();
-  }, []);
-
-  // Simulate fetching chapters when a course is selected
-  useEffect(() => {
-    if (!selectedCourse) return;
-
+    if (!selectedCourse) {
+      setChapters([]);
+      return;
+    }
+    
     const fetchChapters = async () => {
-      setLoading(true);
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Sample chapters based on selected course
-      const sampleChapters = {
-        'Computer Science 101': ['Introduction to Programming', 'Boolean Logic', 'Data Types', 'Control Structures'],
-        'Data Structures': ['Arrays', 'Linked Lists', 'Trees', 'Graphs', 'Hash Tables'],
-        'Machine Learning': ['Supervised Learning', 'Unsupervised Learning', 'Neural Networks', 'Decision Trees'],
-        'Web Development': ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js'],
-      }[selectedCourse] || [];
-
-      setChapters(sampleChapters);
-      setSelectedChapters([]);
-      setLoading(false);
+      try {
+        setLoading(true);
+        // Find the course ID from the selected course name
+        const selectedCourseObj = courses.find(course => course.name === selectedCourse);
+        
+        if (selectedCourseObj) {
+          const chaptersData = await getTheoryChaptersByCourseId(selectedCourseObj.id);
+          setChapters(chaptersData);
+        }
+      } catch (error) {
+        console.error("Error fetching chapters:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchChapters();
-  }, [selectedCourse, setSelectedChapters]);
+  }, [selectedCourse, courses]);
 
-  const handleCourseChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCourse(e.target.value);
+  // Get the display name for a chapter
+  const getChapterName = (chapter: Chapter): string => {
+    // Use title if available, fallback to name, then to ID string
+    return chapter.title || chapter.name || `Chapter ${chapter.id}`;
   };
 
-  const handleChapterChange = (chapter: string) => {
-    setSelectedChapters(
-      selectedChapters.includes(chapter)
-        ? selectedChapters.filter(c => c !== chapter)
-        : [...selectedChapters, chapter]
-    );
+  // Check if a chapter is in the selected chapters
+  const isChapterSelected = (chapter: Chapter): boolean => {
+    const chapterName = getChapterName(chapter);
+    return selectedChapters.includes(chapterName);
+  };
+
+  const handleChapterChange = (chapter: Chapter, checked: boolean) => {
+    const chapterName = getChapterName(chapter);
+    
+    if (checked) {
+      setSelectedChapters([...selectedChapters, chapterName]);
+    } else {
+      setSelectedChapters(selectedChapters.filter(c => c !== chapterName));
+    }
   };
 
   return (
     <div className="space-y-6">
-      <div>
-        <label className="block text-sm font-medium text-white mb-1">
-          Select Course
-        </label>
-        <select
-          value={selectedCourse}
-          onChange={handleCourseChange}
-          className="w-full p-2 border border-gray-300 rounded-md"
+      <div className="space-y-2">
+        <Label htmlFor="course-select">Select Course</Label>
+        <Select 
+          value={selectedCourse} 
+          onValueChange={setSelectedCourse} 
           disabled={loading}
         >
-          <option value="">Select a course</option>
-          {courses.map((course) => (
-            <option key={course} value={course}>
-              {course}
-            </option>
-          ))}
-        </select>
+          <SelectTrigger className="w-full" id="course-select">
+            <SelectValue placeholder="Select a course" />
+          </SelectTrigger>
+          <SelectContent className="max-h-60 overflow-y-auto bg-black">
+            {courses.length === 0 ? (
+              <SelectItem value="none" disabled>No courses available</SelectItem>
+            ) : (
+              courses.map((course) => (
+                <SelectItem key={course.id} value={course.name || ""}>
+                  {course.name}
+                </SelectItem>
+              ))
+            )}
+          </SelectContent>
+        </Select>
       </div>
 
       {selectedCourse && (
-        <div>
-          <label className="block text-sm font-medium text-white mb-1">
-            Select Chapters
-          </label>
-          <div className="space-y-2 max-h-60 overflow-y-auto p-2 border border-gray-300 rounded-md">
+        <div className="space-y-2">
+          <Label>Select Chapters</Label>
+          <div className="border rounded-md">
             {loading ? (
-              <div className="text-center py-4">Loading chapters...</div>
+              <div className="text-center py-6 text-muted-foreground">
+                <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+                Loading chapters...
+              </div>
             ) : chapters.length === 0 ? (
-              <div className="text-center py-4">No chapters available</div>
+              <div className="text-center py-6 text-muted-foreground">
+                No chapters available
+              </div>
             ) : (
-              chapters.map((chapter) => (
-                <div key={chapter} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id={chapter}
-                    checked={selectedChapters.includes(chapter)}
-                    onChange={() => handleChapterChange(chapter)}
-                    className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-                  />
-                  <label htmlFor={chapter} className="ml-2 text-sm text-white">
-                    {chapter}
-                  </label>
+              <div className="h-60 p-2 overflow-y-auto">
+                <div className="space-y-2">
+                  {chapters.map((chapter) => (
+                    <div key={chapter.id} className="flex items-center space-x-2">
+                      <Checkbox 
+                        id={`chapter-${chapter.id}`} 
+                        checked={isChapterSelected(chapter)}
+                        onCheckedChange={(checked) => 
+                          handleChapterChange(chapter, checked as boolean)
+                        }
+                      />
+                      <Label 
+                        htmlFor={`chapter-${chapter.id}`} 
+                        className="text-sm cursor-pointer"
+                      >
+                        {getChapterName(chapter)}
+                      </Label>
+                    </div>
+                  ))}
                 </div>
-              ))
+              </div>
             )}
           </div>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-muted-foreground">
             {selectedChapters.length} chapter(s) selected
           </p>
         </div>
       )}
 
       <div className="flex justify-end">
-        <button
+        <Button
           onClick={onNext}
           disabled={selectedChapters.length === 0}
-          className={`px-4 py-2 rounded-md text-white ${
-            selectedChapters.length === 0
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          variant={selectedChapters.length === 0 ? "secondary" : "default"}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );

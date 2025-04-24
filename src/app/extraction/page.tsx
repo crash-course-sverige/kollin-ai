@@ -1,5 +1,7 @@
 import ExtractionSteps from "../../features/keyword-extraction/extraction-steps";
+import { getAllCourses } from "@/actions/course";
+export default async function ExtractionPage() {
+  const courses = await getAllCourses();
 
-export default function ExtractionPage() {
-  return <ExtractionSteps />;
+  return <ExtractionSteps courses={courses} />;
 }
