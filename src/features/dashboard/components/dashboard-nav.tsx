@@ -10,6 +10,7 @@ import {
   BarChart3,
   FileText,
   GraduationCap,
+  FileKey,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -51,6 +52,12 @@ const navItems: NavItem[] = [
     title: "Documents",
     href: "/dashboard/documents",
     icon: FileText,
+    roles: ["user", "admin"],
+  },
+  {
+    title: "Keyword Extraction",
+    href: "/extraction",
+    icon: FileKey,
     roles: ["user", "admin"],
   },
   {
