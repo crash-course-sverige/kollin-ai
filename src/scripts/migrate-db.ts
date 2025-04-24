@@ -36,14 +36,6 @@ async function main() {
         ORDER BY tablename;
       `;
       console.log("📋 Available tables:", pgTables.map(t => t.tablename).join(", "));
-      
-      // Check if our flashcard_progress table is present
-      const hasFlashcardProgressTable = pgTables.some(t => t.tablename === 'flashcard_progress');
-      if (hasFlashcardProgressTable) {
-        console.log("✅ Flashcard progress table is properly created!");
-      } else {
-        console.error("❌ Flashcard progress table wasn't created properly.");
-      }
     } catch (error) {
       console.error("❌ Failed to validate tables:", error);
     }
