@@ -3,19 +3,16 @@
 import { db } from "@/lib/db/db";
 import { courses } from "@/lib/db/schema/courses.schema";
 import { chapters } from "@/lib/db/schema/chapters.schema";
-import { eq, isNull, not, and, sql } from "drizzle-orm";
+import { eq, and, sql, min } from "drizzle-orm";
 import { tagLocations } from "@/lib/db/schema/tag-locations.schema";
 
 
 export const getTheoryChaptersByCourseId = async (courseId: number) => {
-	const results = await db
+	return await db
 		.select({
-			rowIndex: sql<number>`ROW_NUMBER() OVER (ORDER BY ${chapters.id})`,
-			markdown: chapters.markdown,
+			rowIndex: sql<number>`ROW_NUMBER() OVER (ORDER BY ${min(chapters.id)})`,
 			name: chapters.name,
-			id: chapters.id,
-			courseName: courses.name,
-			courseId: courses.id,
+			id: min(chapters.id),
 		})
 		.from(chapters)
 		.innerJoin(
@@ -33,9 +30,8 @@ export const getTheoryChaptersByCourseId = async (courseId: number) => {
 			courses, 
 			eq(tagLocations.courseId, courses.id)
 		)
-		.where(eq(tagLocations.courseId, courseId));
-
-	return results;
+		.where(eq(tagLocations.courseId, courseId))
+		.groupBy(chapters.name);
 };
 
 export async function getAllCourses() {
