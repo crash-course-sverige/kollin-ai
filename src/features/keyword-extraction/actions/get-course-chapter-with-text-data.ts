@@ -50,7 +50,6 @@ export async function getCourseChapterTextData(courseId: number, chapterIds: num
     .groupBy(chapters.id, chapters.title, chapters.markdown, courses.name);
   
   console.log(`✅ ${results.length} chapter texts retrieved successfully`);
-  console.log("🔍 Results:\n", results);
   return results;
 }
 

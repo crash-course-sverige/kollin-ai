@@ -24,7 +24,7 @@ export async function extractKeywordsFromChapters(courseChaptersTexts: CourseCha
       prompt: courseChapterText.markdown,
     });
 
-    console.log(`✅ Keywords successfully extracted for chapter ${courseChapterText.title}`);
+    console.log(`✅ Keywords successfully extracted for chapter "${courseChapterText.title}"`);
     console.log("✅ Keywords: \n", object.keywords);
 
     chaptersWithGeneratedKeywords.push({
