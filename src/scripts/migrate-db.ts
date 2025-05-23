@@ -18,13 +18,13 @@ const migrationDb = drizzle(migrationClient);
 async function main() {
   try {
     console.log("⏳ Running migrations...");
-    
+
     // This will run migrations on the database, creating tables if they don't exist
     // and making any other necessary changes to match your schema
     await migrate(migrationDb, { migrationsFolder: "drizzle" });
-    
+
     console.log("✅ Migrations completed successfully!");
-    
+
     // Validate the newly created tables by querying them
     console.log("⏳ Validating database tables...");
     try {
@@ -36,7 +36,7 @@ async function main() {
         ORDER BY tablename;
       `;
       console.log("📋 Available tables:", pgTables.map(t => t.tablename).join(", "));
-      
+
       // Check if our flashcard_progress table is present
       const hasFlashcardProgressTable = pgTables.some(t => t.tablename === 'flashcard_progress');
       if (hasFlashcardProgressTable) {

@@ -14,26 +14,26 @@ interface ProgressBarProps {
   className?: string;
 }
 
-export function ProgressBar({ 
-  totalCards, 
-  reviewedCards, 
-  statistics, 
-  className 
+export function ProgressBar({
+  totalCards,
+  reviewedCards,
+  statistics,
+  className
 }: ProgressBarProps) {
-  const progressPercentage = totalCards > 0 
-    ? Math.min(Math.round((reviewedCards / totalCards) * 100), 100) 
+  const progressPercentage = totalCards > 0
+    ? Math.min(Math.round((reviewedCards / totalCards) * 100), 100)
     : 0;
 
-  const easyPercentage = statistics && totalCards > 0 
-    ? Math.round((statistics.easyCount / totalCards) * 100) 
+  const easyPercentage = statistics && totalCards > 0
+    ? Math.round((statistics.easyCount / totalCards) * 100)
     : 0;
-  
-  const mediumPercentage = statistics && totalCards > 0 
-    ? Math.round((statistics.mediumCount / totalCards) * 100) 
+
+  const mediumPercentage = statistics && totalCards > 0
+    ? Math.round((statistics.mediumCount / totalCards) * 100)
     : 0;
-  
-  const hardPercentage = statistics && totalCards > 0 
-    ? Math.round((statistics.hardCount / totalCards) * 100) 
+
+  const hardPercentage = statistics && totalCards > 0
+    ? Math.round((statistics.hardCount / totalCards) * 100)
     : 0;
 
   return (
@@ -44,15 +44,15 @@ export function ProgressBar({
           {reviewedCards} of {totalCards} cards reviewed
         </span>
       </div>
-      
+
       {/* Main progress bar */}
       <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
-        <div 
-          className="h-full bg-primary" 
+        <div
+          className="h-full bg-primary"
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
-      
+
       {/* Statistics breakdown */}
       {statistics && (
         <div className="space-y-2 pt-2">
@@ -70,19 +70,19 @@ export function ProgressBar({
               <span>Hard: {statistics.hardCount} ({hardPercentage}%)</span>
             </div>
           </div>
-          
+
           {/* Detailed progress bar */}
           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden flex">
-            <div 
-              className="h-full bg-green-500" 
+            <div
+              className="h-full bg-green-500"
               style={{ width: `${easyPercentage}%` }}
             />
-            <div 
-              className="h-full bg-yellow-500" 
+            <div
+              className="h-full bg-yellow-500"
               style={{ width: `${mediumPercentage}%` }}
             />
-            <div 
-              className="h-full bg-red-500" 
+            <div
+              className="h-full bg-red-500"
               style={{ width: `${hardPercentage}%` }}
             />
           </div>

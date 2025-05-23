@@ -11,10 +11,10 @@ if (!DATABASE_URL) {
 
 async function main() {
   const sql = postgres(DATABASE_URL, { max: 1 });
-  
+
   try {
     console.log("📊 Checking flashcard_progress table structure...");
-    
+
     // Get column information for the flashcard_progress table
     const columns = await sql`
       SELECT column_name, data_type, character_maximum_length, column_default, is_nullable
@@ -22,10 +22,10 @@ async function main() {
       WHERE table_name = 'flashcard_progress'
       ORDER BY ordinal_position;
     `;
-    
+
     console.log("\n📋 Flashcard Progress Table Structure:");
     console.table(columns);
-    
+
     // Check for foreign keys
     const foreignKeys = await sql`
       SELECT
@@ -43,14 +43,14 @@ async function main() {
           AND ccu.table_schema = tc.table_schema
       WHERE tc.constraint_type = 'FOREIGN KEY' AND tc.table_name = 'flashcard_progress';
     `;
-    
+
     console.log("\n🔗 Foreign Key Relationships:");
     console.table(foreignKeys);
-    
+
     // Check if there's any data already in the table
     const count = await sql`SELECT COUNT(*) FROM flashcard_progress`;
     console.log(`\n📈 Current record count: ${count[0].count}`);
-    
+
     console.log("\n✅ Table check complete!");
   } catch (error) {
     console.error("❌ Error checking table:", error);

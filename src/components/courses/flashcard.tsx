@@ -41,12 +41,12 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
     if (savedDifficulties) {
       const parsed = JSON.parse(savedDifficulties);
       setCardDifficulties(parsed);
-      
+
       // Calculate statistics
       const easy = Object.values(parsed).filter(d => d === 'easy').length;
       const medium = Object.values(parsed).filter(d => d === 'medium').length;
       const hard = Object.values(parsed).filter(d => d === 'hard').length;
-      
+
       setStatistics({
         easyCount: easy,
         mediumCount: medium,
@@ -59,12 +59,12 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
   useEffect(() => {
     if (Object.keys(cardDifficulties).length > 0) {
       localStorage.setItem(`flashcard-difficulties-${setId}`, JSON.stringify(cardDifficulties));
-      
+
       // Update statistics
       const easy = Object.values(cardDifficulties).filter(d => d === 'easy').length;
       const medium = Object.values(cardDifficulties).filter(d => d === 'medium').length;
       const hard = Object.values(cardDifficulties).filter(d => d === 'hard').length;
-      
+
       setStatistics({
         easyCount: easy,
         mediumCount: medium,
@@ -75,14 +75,14 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
 
   const handlePrevCard = () => {
     setIsFlipped(false);
-    setCurrentCardIndex((prevIndex) => 
+    setCurrentCardIndex((prevIndex) =>
       prevIndex === 0 ? cards.length - 1 : prevIndex - 1
     );
   };
 
   const handleNextCard = () => {
     setIsFlipped(false);
-    setCurrentCardIndex((prevIndex) => 
+    setCurrentCardIndex((prevIndex) =>
       prevIndex === cards.length - 1 ? 0 : prevIndex + 1
     );
   };
@@ -94,13 +94,13 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
   const handleDifficultyRating = (difficulty: Difficulty) => {
     // Only allow rating after seeing the answer
     if (!isFlipped || !difficulty) return;
-    
+
     // Update local state
     setCardDifficulties(prev => ({
       ...prev,
       [currentCard.id]: difficulty
     }));
-    
+
     // If user is logged in, save to database
     if (session?.user) {
       startTransition(async () => {
@@ -124,14 +124,14 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
   return (
     <div className="w-full max-w-3xl mx-auto space-y-6">
       {/* Progress Bar */}
-      <ProgressBar 
+      <ProgressBar
         totalCards={cards.length}
         reviewedCards={totalReviewed}
         statistics={statistics}
       />
-      
+
       <div className="relative">
-        <div 
+        <div
           className="aspect-[3/2] bg-card text-card-foreground shadow-lg rounded-xl border p-8 cursor-pointer"
           onClick={handleFlip}
         >
@@ -152,8 +152,8 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
         </div>
 
         <div className="absolute top-1/2 -translate-y-1/2 -left-4">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="icon"
             className="rounded-full bg-background shadow-md"
             onClick={handlePrevCard}
@@ -164,8 +164,8 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
         </div>
 
         <div className="absolute top-1/2 -translate-y-1/2 -right-4">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="icon"
             className="rounded-full bg-background shadow-md"
             onClick={handleNextCard}
@@ -182,7 +182,7 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
         </div>
 
         <div className="flex items-center justify-center space-x-6">
-          <button 
+          <button
             onClick={() => handleDifficultyRating('easy')}
             className={`difficulty-emoji text-2xl transition-transform hover:scale-125 ${isPending ? 'opacity-50' : ''} ${currentDifficulty === 'easy' ? 'opacity-100 scale-125' : 'opacity-70'} ${!isFlipped ? 'pointer-events-none opacity-40' : ''}`}
             title="Easy"
@@ -191,7 +191,7 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
           >
             😊
           </button>
-          <button 
+          <button
             onClick={() => handleDifficultyRating('medium')}
             className={`difficulty-emoji text-2xl transition-transform hover:scale-125 ${isPending ? 'opacity-50' : ''} ${currentDifficulty === 'medium' ? 'opacity-100 scale-125' : 'opacity-70'} ${!isFlipped ? 'pointer-events-none opacity-40' : ''}`}
             title="Medium"
@@ -200,7 +200,7 @@ export function FlashCardComponent({ cards, setId = "default" }: FlashCardProps)
           >
             🤔
           </button>
-          <button 
+          <button
             onClick={() => handleDifficultyRating('hard')}
             className={`difficulty-emoji text-2xl transition-transform hover:scale-125 ${isPending ? 'opacity-50' : ''} ${currentDifficulty === 'hard' ? 'opacity-100 scale-125' : 'opacity-70'} ${!isFlipped ? 'pointer-events-none opacity-40' : ''}`}
             title="Hard"

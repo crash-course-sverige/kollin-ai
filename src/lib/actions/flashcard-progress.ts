@@ -15,13 +15,13 @@ export async function saveFlashcardProgress(
 ) {
   try {
     const session = await getServerSession(authOptions);
-    
+
     if (!session?.user?.id) {
       return { error: "Not authenticated" };
     }
 
     const userId = session.user.id;
-    
+
     // Check if progress record already exists
     const existingProgress = await db.query.flashcardProgress.findFirst({
       where: and(
@@ -32,7 +32,7 @@ export async function saveFlashcardProgress(
     });
 
     const now = new Date();
-    
+
     if (existingProgress) {
       // Update existing record
       await db
@@ -76,20 +76,20 @@ export async function saveFlashcardProgress(
 export async function getFlashcardProgress(setId: string) {
   try {
     const session = await getServerSession(authOptions);
-    
+
     if (!session?.user?.id) {
       return { error: "Not authenticated" };
     }
 
     const userId = session.user.id;
-    
+
     const progress = await db.query.flashcardProgress.findMany({
       where: and(
         eq(flashcardProgress.userId, userId),
         eq(flashcardProgress.setId, setId)
       ),
     });
-    
+
     return { progress };
   } catch (error) {
     console.error("Error fetching flashcard progress:", error);
@@ -101,33 +101,33 @@ export async function getFlashcardProgress(setId: string) {
 export async function getFlashcardStats(setId: string) {
   try {
     const session = await getServerSession(authOptions);
-    
+
     if (!session?.user?.id) {
       return { error: "Not authenticated" };
     }
 
     const userId = session.user.id;
-    
+
     const progress = await db.query.flashcardProgress.findMany({
       where: and(
         eq(flashcardProgress.userId, userId),
         eq(flashcardProgress.setId, setId)
       ),
     });
-    
+
     // Calculate statistics
     const totalReviewed = progress.length;
     const easyCount = progress.filter(p => p.difficulty === 'easy').length;
     const mediumCount = progress.filter(p => p.difficulty === 'medium').length;
     const hardCount = progress.filter(p => p.difficulty === 'hard').length;
-    
-    return { 
+
+    return {
       stats: {
         totalReviewed,
         easyCount,
         mediumCount,
         hardCount
-      } 
+      }
     };
   } catch (error) {
     console.error("Error fetching flashcard stats:", error);

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  BookOpen, 
-  ChevronDown, 
-  ChevronRight, 
-  GraduationCap, 
+import {
+  BookOpen,
+  ChevronDown,
+  ChevronRight,
+  GraduationCap,
   Network,
   WalletCards
 } from "lucide-react";
@@ -65,14 +65,14 @@ export function CoursesSidebar() {
             label="All Courses"
             icon={BookOpen}
           />
-          
+
           <NavItem
             isActive={pathname === "/courses/flashcards"}
             href="/courses/flashcards"
             label="Flash Cards"
             icon={WalletCards}
           />
-          
+
           <div className="py-2">
             <Button
               variant="ghost"
@@ -89,7 +89,7 @@ export function CoursesSidebar() {
                 <ChevronRight className="h-4 w-4" />
               )}
             </Button>
-            
+
             {expandedCourses && (
               <div className="pl-6 pt-2">
                 {courses.map((course) => (
@@ -143,13 +143,13 @@ function NavItem({ isActive, href, label, icon: Icon, children }: NavItemProps) 
   );
 }
 
-function SubNavItem({ 
-  isActive, 
-  href, 
-  label 
-}: { 
-  isActive: boolean; 
-  href: string; 
+function SubNavItem({
+  isActive,
+  href,
+  label
+}: {
+  isActive: boolean;
+  href: string;
   label: string;
 }) {
   return (

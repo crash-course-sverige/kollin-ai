@@ -23,11 +23,11 @@ export default function FlashCardsPage() {
           {flashcardsData.title} - Review and study with mathematical concepts
         </p>
       </div>
-      
+
       <div className="py-4">
         <FlashCardComponent cards={flashCards} setId="calculus" />
       </div>
-      
+
       <div className="bg-muted/50 p-6 rounded-lg space-y-4">
         <h3 className="text-lg font-medium mb-2">How to Use Flash Cards</h3>
         <ul className="list-disc pl-6 space-y-2">
@@ -37,15 +37,15 @@ export default function FlashCardsPage() {
           <li>After revealing the answer, rate how difficult it was:</li>
           <ul className="list-none pl-6 pt-2 flex flex-col sm:flex-row gap-3">
             <li className="flex items-center">
-              <span className="text-xl mr-2">😊</span> 
+              <span className="text-xl mr-2">😊</span>
               <span>Easy - I knew this</span>
             </li>
             <li className="flex items-center">
-              <span className="text-xl mr-2">🤔</span> 
+              <span className="text-xl mr-2">🤔</span>
               <span>Medium - Somewhat challenging</span>
             </li>
             <li className="flex items-center">
-              <span className="text-xl mr-2">😵</span> 
+              <span className="text-xl mr-2">😵</span>
               <span>Hard - Need more practice</span>
             </li>
           </ul>
