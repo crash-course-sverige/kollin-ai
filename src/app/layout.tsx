@@ -1,43 +1,73 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { SessionProvider } from "@/components/session-provider";
+import type { Metadata, Viewport } from "next";
+import { Geist_Mono, Inter } from "next/font/google";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from "@/components/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Aviano Sans: wordmark / rare brand moments only (see design system docs).
+const aviano = localFont({
+  src: "../../public/fonts/aviano-sans-regular.otf",
+  variable: "--font-aviano-face",
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Next.js Application",
-    template: "%s | Next.js Application",
+    template: "%s | Kollin",
+    default: "Kollin",
   },
-  description: "A modern Next.js application with authentication and dashboard",
+  description: "AI-native study platform for engineering students.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const session = await getServerSession(authOptions);
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Keep browser chrome in step with the canvas in each mode.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F9F7F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#150A0B" },
+  ],
+};
 
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <SessionProvider session={session}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </SessionProvider>
+    // suppressHydrationWarning: next-themes sets the `dark` class before paint.
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${geistMono.variable} ${aviano.variable} h-full`}
+    >
+      <head>
+        {/* Kollin's Adobe Fonts kit (Proxima Nova Wide, display face).
+            The kit only serves allow-listed domains; others fall back to Inter. */}
+        <link rel="stylesheet" href="https://use.typekit.net/vai5tab.css" />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider delayDuration={200}>{children}</TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,79 +1,246 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Generated from tokens/kollin.tokens.json (pnpm tokens). Do not edit. */
+@import "../styles/tokens.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* -------------------------------------------------------------------------
+ * Theme: map semantic roles to Tailwind utilities.
+ * `inline` keeps utilities pointing at the CSS variables, so .dark swaps
+ * values at runtime without regenerating classes.
+ * ----------------------------------------------------------------------- */
+@theme inline {
+  /* shadcn core roles */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Kollin roles beyond shadcn */
+  --color-canvas-alt: var(--canvas-alt);
+  --color-border-subtle: var(--border-subtle);
+  --color-subtle-foreground: var(--text-subtle);
+  --color-disabled-foreground: var(--text-disabled);
+  --color-on-brand: var(--text-on-brand);
+  --color-brand-accent: var(--text-accent);
+  --color-surface-brand: var(--surface-brand);
+  --color-field-brand: var(--field-brand);
+  --color-field-dark: var(--field-dark);
+  --color-guld: var(--guld);
+  --color-guld-foreground: var(--guld-foreground);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Data hues: difficulty + learner mastery only (see tokens file) */
+  --color-level-easy: var(--level-easy);
+  --color-level-easy-muted: var(--level-easy-muted);
+  --color-level-easy-foreground: var(--level-easy-foreground);
+  --color-level-easy-border: var(--level-easy-border);
+  --color-level-medium: var(--level-medium);
+  --color-level-medium-muted: var(--level-medium-muted);
+  --color-level-medium-foreground: var(--level-medium-foreground);
+  --color-level-medium-border: var(--level-medium-border);
+  --color-level-hard: var(--level-hard);
+  --color-level-hard-muted: var(--level-hard-muted);
+  --color-level-hard-foreground: var(--level-hard-foreground);
+  --color-level-hard-border: var(--level-hard-border);
+  --color-level-nightmare: var(--level-nightmare);
+  --color-level-nightmare-muted: var(--level-nightmare-muted);
+  --color-level-nightmare-foreground: var(--level-nightmare-foreground);
+  --color-level-nightmare-border: var(--level-nightmare-border);
+  --color-level-unrated: var(--level-unrated);
+  --color-level-unrated-muted: var(--level-unrated-muted);
+  --color-level-unrated-foreground: var(--level-unrated-foreground);
+  --color-level-unrated-border: var(--level-unrated-border);
+
+  /* Fonts. Display = Proxima Nova Wide (Adobe Fonts kit), Inter body. */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "proxima-nova-wide", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-aviano: var(--font-aviano-face), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-display);
+
+  /* Radius: moderate rounding, full pills for chips. Base 0.5rem (Kollin). */
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.5);
+  --radius-4xl: calc(var(--radius) * 3);
+
+  /* Touch target height (phone-first product UI) */
+  --spacing-touch: 2.75rem;
+}
 
 :root {
-  --background: white;
-  --foreground: black;
+  --radius: 0.5rem;
 }
 
-.dark {
-  --background: black;
-  --foreground: white;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-}
-
-/* Flash Card Flip Animation */
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.flip-card-inner.flipped {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-card-back {
-  transform: rotateY(180deg);
-}
-
-/* Math expression styling */
-.katex {
-  font-size: 1.1em !important;
-}
-
-.katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.5rem 0;
-}
-
-/* Ensure math expressions don't overflow on mobile */
-@media (max-width: 640px) {
-  .katex-display {
-    font-size: 0.9em;
+/* -------------------------------------------------------------------------
+ * Typography roles. Prefix `type-` (not `text-`) so tailwind-merge never
+ * confuses a role with a text color. Use via <Typography role="...">.
+ * Sizes: mobile / desktop(>=64rem), from Kollin's typography standard.
+ * ----------------------------------------------------------------------- */
+@utility type-display-xl {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 2.5rem;
+    line-height: 3rem;
   }
 }
-
-/* Difficulty emoji styling */
-.difficulty-emoji {
-  cursor: pointer;
-  user-select: none;
-  background: none;
-  border: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
-  transition: all 0.2s ease;
+@utility type-display-lg {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+@utility type-section-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+@utility type-card-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.01em;
+}
+@utility type-body-lg {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  @media (width >= 64rem) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+@utility type-body {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility type-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@utility type-caption {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+@utility type-eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+@utility type-stat {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 2rem;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  @media (width >= 64rem) {
+    font-size: 2rem;
+    line-height: 2.25rem;
+  }
+}
+/* Long-form reading (theory, exercise text): comfortable measure + leading. */
+@utility type-reading {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 68ch;
 }
 
-.difficulty-emoji:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
+/* -------------------------------------------------------------------------
+ * Base
+ * ----------------------------------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
 
-.dark .difficulty-emoji:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  html {
+    /* Pinch zoom stays available; only removes the double-tap zoom delay. */
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1 { @apply type-display-xl; }
+  h2 { @apply type-display-lg; }
+  h3 { @apply type-section-title; }
+  h4, h5, h6 { @apply type-card-title; }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-bordeaux) 22%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

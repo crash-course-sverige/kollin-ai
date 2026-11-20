@@ -1,37 +1,25 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 
-export default async function Home() {
-  const session = await getServerSession(authOptions);
-  
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Typography } from "@/components/ui/typography";
+
+export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <div className="flex flex-col items-center gap-6 text-center max-w-3xl">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-          Modern Next.js Application
-        </h1>
-        <p className="text-xl text-muted-foreground">
-          A modern, type-safe Next.js 15 application with role-based authentication, 
-          responsive design, and a feature-based architecture.
-        </p>
-        <div className="flex gap-4">
-          {session ? (
-            <Button asChild size="lg">
-              <Link href="/dashboard">Dashboard</Link>
-            </Button>
-          ) : (
-            <>
-              <Button asChild size="lg">
-                <Link href="/auth/login">Login</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/auth/register">Register</Link>
-              </Button>
-            </>
-          )}
-        </div>
+    <main className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center gap-6 px-4 py-16">
+      <div className="flex items-center justify-between">
+        <span className="font-aviano text-xl tracking-wide">KOLLIN</span>
+        <ThemeToggle />
+      </div>
+      <Typography role="eyebrow">Under construction</Typography>
+      <Typography role="display-xl" as="h1">An AI-native study platform, built from your exams.</Typography>
+      <Typography role="body-lg" tone="muted">
+        Exams become exercises, exercises become topics, and topics grow into a graph of what to study next.
+      </Typography>
+      <div>
+        <Button asChild size="lg">
+          <Link href="/design">See the design system</Link>
+        </Button>
       </div>
     </main>
   );

@@ -1,0 +1,332 @@
+{
+  "$description": "Kollin design tokens. Source of truth for color. Authored in sRGB hex (matching Kollin's brand book / next-kollin themes/colors.ts); scripts/build-tokens.mjs converts to OKLCH and writes src/styles/tokens.css. Aliases use {path.to.token}. Dark values for the 'dark' set are DERIVED here (next-kollin has no governed dark theme): warm burgundy-tinted near-black, same hue family as the light brand.",
+
+  "color": {
+    "$type": "color",
+
+    "white": { "$value": "#FFFFFF" },
+    "black": { "$value": "#000000" },
+
+    "burgundy": {
+      "$description": "Brand ink. 900 is the brand base. Text, primary button, brand fields.",
+      "50": { "$value": "#F4F2F3" },
+      "100": { "$value": "#EAE6E6" },
+      "200": { "$value": "#D4CCCD" },
+      "300": { "$value": "#BFB3B4" },
+      "400": { "$value": "#958182" },
+      "500": { "$value": "#7F6769" },
+      "600": { "$value": "#6A4E50" },
+      "700": { "$value": "#553537" },
+      "800": { "$value": "#2A0205" },
+      "900": { "$value": "#2A0205" },
+      "950": { "$value": "#110102" }
+    },
+
+    "warm-gray": {
+      "$description": "Warm neutral surface ladder. Never use cool grays for surfaces.",
+      "50": { "$value": "#FDFCFB" },
+      "100": { "$value": "#F9F7F5" },
+      "200": { "$value": "#F5F2EF" },
+      "300": { "$value": "#F1EEE9" },
+      "400": { "$value": "#EDEAE4" },
+      "500": { "$value": "#EBE6DF" },
+      "600": { "$value": "#D9D4CD" },
+      "700": { "$value": "#C7C2BB" },
+      "800": { "$value": "#B5B0A9" },
+      "900": { "$value": "#A39E97" },
+      "950": { "$value": "#928D86" }
+    },
+
+    "bordeaux": {
+      "$description": "Red accent. Eyebrows, active tab underline, link hover, selected indicators. Small moments only; never on a burgundy field.",
+      "DEFAULT": { "$value": "#86002A" },
+      "light": { "$value": "#8A2E4B" },
+      "dark": { "$value": "#690122" },
+      "on-dark": { "$value": "#E8899E", "$description": "Derived: bordeaux hue raised in lightness for use on dark canvas." }
+    },
+
+    "aperol": {
+      "$description": "Promo / event only.",
+      "DEFAULT": { "$value": "#E7552B" },
+      "light": { "$value": "#FF8F33" },
+      "dark": { "$value": "#CC5C00" }
+    },
+
+    "bloody-mary": {
+      "$description": "Promo only. Never a CTA where difficulty is shown.",
+      "DEFAULT": { "$value": "#FA1C0C" },
+      "light": { "$value": "#FE685D" },
+      "dark": { "$value": "#E21001" }
+    },
+
+    "gold": {
+      "$description": "Guld only (badge, Guld card, Sveriges Ingenjörer). Fails contrast as text on light surfaces.",
+      "DEFAULT": { "$value": "#E8A33A" },
+      "light": { "$value": "#F6C460" },
+      "dark": { "$value": "#B8791E" },
+      "ink": { "$value": "#5C3A0E" }
+    },
+
+    "error": {
+      "50": { "$value": "#FEF3F2" },
+      "100": { "$value": "#FEE4E2" },
+      "400": { "$value": "#F97066" },
+      "500": { "$value": "#F04438" },
+      "600": { "$value": "#D92D20" },
+      "700": { "$value": "#B42318" },
+      "900": { "$value": "#7A271A" }
+    },
+    "warning": {
+      "50": { "$value": "#FFFAEB" },
+      "500": { "$value": "#F79009" },
+      "700": { "$value": "#B54708" }
+    },
+    "success": {
+      "50": { "$value": "#ECFDF3" },
+      "500": { "$value": "#12B76A" },
+      "700": { "$value": "#027A48" }
+    },
+
+    "level": {
+      "$description": "DATA HUES, reserved. Difficulty and learner progress/mastery only. Brand and chrome stay out of this hue space.",
+      "easy": {
+        "solid": { "$value": "#2E933C" },
+        "muted": { "$value": "#EAF7EC" },
+        "text": { "$value": "#15803D" },
+        "border": { "$value": "#BBF7D0" },
+        "dark-muted": { "$value": "#12281A" },
+        "dark-text": { "$value": "#7BD88F" },
+        "dark-border": { "$value": "#25523A" }
+      },
+      "medium": {
+        "solid": { "$value": "#F8DB66" },
+        "muted": { "$value": "#FFF7DB" },
+        "text": { "$value": "#B45309" },
+        "border": { "$value": "#FDE68A" },
+        "dark-muted": { "$value": "#2B230E" },
+        "dark-text": { "$value": "#F3C933" },
+        "dark-border": { "$value": "#5C4A14" }
+      },
+      "hard": {
+        "solid": { "$value": "#BA271A" },
+        "muted": { "$value": "#FDEAE8" },
+        "text": { "$value": "#B91C1C" },
+        "border": { "$value": "#FECACA" },
+        "dark-muted": { "$value": "#301312" },
+        "dark-text": { "$value": "#F28B82" },
+        "dark-border": { "$value": "#6B2A26" }
+      },
+      "nightmare": {
+        "solid": { "$value": "#7C3AED" },
+        "muted": { "$value": "#F3E8FF" },
+        "text": { "$value": "#7E22CE" },
+        "border": { "$value": "#E9D5FF" },
+        "dark-muted": { "$value": "#221A38" },
+        "dark-text": { "$value": "#C4A1FF" },
+        "dark-border": { "$value": "#47347A" }
+      },
+      "unrated": {
+        "solid": { "$value": "#98A2B3" },
+        "muted": { "$value": "#F2F4F7" },
+        "text": { "$value": "#475467" },
+        "border": { "$value": "#E5E7EB" },
+        "dark-muted": { "$value": "#2A1B1C" },
+        "dark-text": { "$value": "#BFB3B4" },
+        "dark-border": { "$value": "#4A3738" }
+      }
+    },
+
+    "dark": {
+      "$description": "Derived dark-mode neutrals: burgundy-tinted, never cool gray.",
+      "canvas": { "$value": "#150A0B" },
+      "canvas-alt": { "$value": "#1A0E0F" },
+      "surface": { "$value": "#1F1213" },
+      "popover": { "$value": "#261718" },
+      "muted": { "$value": "#2A1B1C" },
+      "brand-surface": { "$value": "#2E1619" },
+      "border-subtle": { "$value": "#2E1F20" },
+      "border": { "$value": "#3D2B2D" },
+      "input": { "$value": "#4F3A3C" },
+      "disabled": { "$value": "#6A5557" }
+    }
+  },
+
+  "semantic": {
+    "$description": "Role tokens consumed by components. light and dark sets must define the same keys.",
+
+    "light": {
+      "background":           { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "foreground":           { "$type": "color", "$value": "{color.burgundy.900}" },
+      "canvas-alt":           { "$type": "color", "$value": "{color.warm-gray.200}" },
+      "card":                 { "$type": "color", "$value": "{color.white}" },
+      "card-foreground":      { "$type": "color", "$value": "{color.burgundy.900}" },
+      "popover":              { "$type": "color", "$value": "{color.white}" },
+      "popover-foreground":   { "$type": "color", "$value": "{color.burgundy.900}" },
+      "primary":              { "$type": "color", "$value": "{color.burgundy.900}" },
+      "primary-foreground":   { "$type": "color", "$value": "{color.white}" },
+      "secondary":            { "$type": "color", "$value": "{color.warm-gray.300}" },
+      "secondary-foreground": { "$type": "color", "$value": "{color.burgundy.900}" },
+      "muted":                { "$type": "color", "$value": "{color.warm-gray.300}" },
+      "muted-foreground":     { "$type": "color", "$value": "{color.burgundy.600}" },
+      "accent":               { "$type": "color", "$value": "{color.warm-gray.300}" },
+      "accent-foreground":    { "$type": "color", "$value": "{color.burgundy.900}" },
+      "destructive":          { "$type": "color", "$value": "{color.error.600}" },
+      "destructive-foreground": { "$type": "color", "$value": "{color.white}" },
+      "border":               { "$type": "color", "$value": "{color.warm-gray.600}" },
+      "border-subtle":        { "$type": "color", "$value": "{color.warm-gray.500}" },
+      "input":                { "$type": "color", "$value": "{color.warm-gray.700}" },
+      "ring":                 { "$type": "color", "$value": "{color.burgundy.900}" },
+
+      "text-subtle":          { "$type": "color", "$value": "{color.burgundy.500}" },
+      "text-disabled":        { "$type": "color", "$value": "{color.burgundy.400}" },
+      "text-on-brand":        { "$type": "color", "$value": "{color.white}" },
+      "text-accent":          { "$type": "color", "$value": "{color.bordeaux.DEFAULT}" },
+
+      "surface-brand":        { "$type": "color", "$value": "{color.burgundy.50}" },
+      "field-brand":          { "$type": "color", "$value": "{color.burgundy.900}" },
+      "field-dark":           { "$type": "color", "$value": "{color.black}" },
+
+      "guld":                 { "$type": "color", "$value": "{color.burgundy.900}" },
+      "guld-foreground":      { "$type": "color", "$value": "{color.gold.DEFAULT}" },
+
+      "sidebar":              { "$type": "color", "$value": "{color.warm-gray.200}" },
+      "sidebar-foreground":   { "$type": "color", "$value": "{color.burgundy.900}" },
+      "sidebar-primary":      { "$type": "color", "$value": "{color.burgundy.900}" },
+      "sidebar-primary-foreground": { "$type": "color", "$value": "{color.white}" },
+      "sidebar-accent":       { "$type": "color", "$value": "{color.warm-gray.500}" },
+      "sidebar-accent-foreground": { "$type": "color", "$value": "{color.burgundy.900}" },
+      "sidebar-border":       { "$type": "color", "$value": "{color.warm-gray.600}" },
+      "sidebar-ring":         { "$type": "color", "$value": "{color.burgundy.900}" },
+
+      "chart-1": { "$type": "color", "$value": "{color.bordeaux.DEFAULT}" },
+      "chart-2": { "$type": "color", "$value": "{color.burgundy.600}" },
+      "chart-3": { "$type": "color", "$value": "{color.warm-gray.800}" },
+      "chart-4": { "$type": "color", "$value": "{color.aperol.DEFAULT}" },
+      "chart-5": { "$type": "color", "$value": "{color.gold.dark}" },
+
+      "level-easy":              { "$type": "color", "$value": "{color.level.easy.solid}" },
+      "level-easy-muted":        { "$type": "color", "$value": "{color.level.easy.muted}" },
+      "level-easy-foreground":   { "$type": "color", "$value": "{color.level.easy.text}" },
+      "level-easy-border":       { "$type": "color", "$value": "{color.level.easy.border}" },
+      "level-medium":            { "$type": "color", "$value": "{color.level.medium.solid}" },
+      "level-medium-muted":      { "$type": "color", "$value": "{color.level.medium.muted}" },
+      "level-medium-foreground": { "$type": "color", "$value": "{color.level.medium.text}" },
+      "level-medium-border":     { "$type": "color", "$value": "{color.level.medium.border}" },
+      "level-hard":              { "$type": "color", "$value": "{color.level.hard.solid}" },
+      "level-hard-muted":        { "$type": "color", "$value": "{color.level.hard.muted}" },
+      "level-hard-foreground":   { "$type": "color", "$value": "{color.level.hard.text}" },
+      "level-hard-border":       { "$type": "color", "$value": "{color.level.hard.border}" },
+      "level-nightmare":            { "$type": "color", "$value": "{color.level.nightmare.solid}" },
+      "level-nightmare-muted":      { "$type": "color", "$value": "{color.level.nightmare.muted}" },
+      "level-nightmare-foreground": { "$type": "color", "$value": "{color.level.nightmare.text}" },
+      "level-nightmare-border":     { "$type": "color", "$value": "{color.level.nightmare.border}" },
+      "level-unrated":            { "$type": "color", "$value": "{color.level.unrated.solid}" },
+      "level-unrated-muted":      { "$type": "color", "$value": "{color.level.unrated.muted}" },
+      "level-unrated-foreground": { "$type": "color", "$value": "{color.level.unrated.text}" },
+      "level-unrated-border":     { "$type": "color", "$value": "{color.level.unrated.border}" }
+    },
+
+    "dark": {
+      "background":           { "$type": "color", "$value": "{color.dark.canvas}" },
+      "foreground":           { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "canvas-alt":           { "$type": "color", "$value": "{color.dark.canvas-alt}" },
+      "card":                 { "$type": "color", "$value": "{color.dark.surface}" },
+      "card-foreground":      { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "popover":              { "$type": "color", "$value": "{color.dark.popover}" },
+      "popover-foreground":   { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "primary":              { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "primary-foreground":   { "$type": "color", "$value": "{color.burgundy.900}" },
+      "secondary":            { "$type": "color", "$value": "{color.dark.muted}" },
+      "secondary-foreground": { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "muted":                { "$type": "color", "$value": "{color.dark.muted}" },
+      "muted-foreground":     { "$type": "color", "$value": "{color.burgundy.300}" },
+      "accent":               { "$type": "color", "$value": "{color.dark.muted}" },
+      "accent-foreground":    { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "destructive":          { "$type": "color", "$value": "{color.error.400}" },
+      "destructive-foreground": { "$type": "color", "$value": "{color.burgundy.950}" },
+      "border":               { "$type": "color", "$value": "{color.dark.border}" },
+      "border-subtle":        { "$type": "color", "$value": "{color.dark.border-subtle}" },
+      "input":                { "$type": "color", "$value": "{color.dark.input}" },
+      "ring":                 { "$type": "color", "$value": "{color.burgundy.300}" },
+
+      "text-subtle":          { "$type": "color", "$value": "{color.burgundy.400}" },
+      "text-disabled":        { "$type": "color", "$value": "{color.dark.disabled}" },
+      "text-on-brand":        { "$type": "color", "$value": "{color.white}" },
+      "text-accent":          { "$type": "color", "$value": "{color.bordeaux.on-dark}" },
+
+      "surface-brand":        { "$type": "color", "$value": "{color.dark.brand-surface}" },
+      "field-brand":          { "$type": "color", "$value": "{color.burgundy.900}" },
+      "field-dark":           { "$type": "color", "$value": "{color.black}" },
+
+      "guld":                 { "$type": "color", "$value": "{color.burgundy.900}" },
+      "guld-foreground":      { "$type": "color", "$value": "{color.gold.DEFAULT}" },
+
+      "sidebar":              { "$type": "color", "$value": "{color.dark.canvas-alt}" },
+      "sidebar-foreground":   { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "sidebar-primary":      { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "sidebar-primary-foreground": { "$type": "color", "$value": "{color.burgundy.900}" },
+      "sidebar-accent":       { "$type": "color", "$value": "{color.dark.muted}" },
+      "sidebar-accent-foreground": { "$type": "color", "$value": "{color.warm-gray.100}" },
+      "sidebar-border":       { "$type": "color", "$value": "{color.dark.border}" },
+      "sidebar-ring":         { "$type": "color", "$value": "{color.burgundy.300}" },
+
+      "chart-1": { "$type": "color", "$value": "{color.bordeaux.on-dark}" },
+      "chart-2": { "$type": "color", "$value": "{color.burgundy.300}" },
+      "chart-3": { "$type": "color", "$value": "{color.warm-gray.900}" },
+      "chart-4": { "$type": "color", "$value": "{color.aperol.light}" },
+      "chart-5": { "$type": "color", "$value": "{color.gold.light}" },
+
+      "level-easy":              { "$type": "color", "$value": "{color.level.easy.solid}" },
+      "level-easy-muted":        { "$type": "color", "$value": "{color.level.easy.dark-muted}" },
+      "level-easy-foreground":   { "$type": "color", "$value": "{color.level.easy.dark-text}" },
+      "level-easy-border":       { "$type": "color", "$value": "{color.level.easy.dark-border}" },
+      "level-medium":            { "$type": "color", "$value": "{color.level.medium.solid}" },
+      "level-medium-muted":      { "$type": "color", "$value": "{color.level.medium.dark-muted}" },
+      "level-medium-foreground": { "$type": "color", "$value": "{color.level.medium.dark-text}" },
+      "level-medium-border":     { "$type": "color", "$value": "{color.level.medium.dark-border}" },
+      "level-hard":              { "$type": "color", "$value": "{color.level.hard.solid}" },
+      "level-hard-muted":        { "$type": "color", "$value": "{color.level.hard.dark-muted}" },
+      "level-hard-foreground":   { "$type": "color", "$value": "{color.level.hard.dark-text}" },
+      "level-hard-border":       { "$type": "color", "$value": "{color.level.hard.dark-border}" },
+      "level-nightmare":            { "$type": "color", "$value": "{color.level.nightmare.solid}" },
+      "level-nightmare-muted":      { "$type": "color", "$value": "{color.level.nightmare.dark-muted}" },
+      "level-nightmare-foreground": { "$type": "color", "$value": "{color.level.nightmare.dark-text}" },
+      "level-nightmare-border":     { "$type": "color", "$value": "{color.level.nightmare.dark-border}" },
+      "level-unrated":            { "$type": "color", "$value": "{color.level.unrated.solid}" },
+      "level-unrated-muted":      { "$type": "color", "$value": "{color.level.unrated.dark-muted}" },
+      "level-unrated-foreground": { "$type": "color", "$value": "{color.level.unrated.dark-text}" },
+      "level-unrated-border":     { "$type": "color", "$value": "{color.level.unrated.dark-border}" }
+    }
+  },
+
+  "contrast": {
+    "$description": "Pairs the build script verifies in BOTH modes. min is the WCAG 2.x ratio. 4.5 = body text, 3 = large text / UI components. The build fails if any pair is below its min.",
+    "pairs": [
+      { "fg": "foreground",           "bg": "background",     "min": 4.5 },
+      { "fg": "foreground",           "bg": "canvas-alt",     "min": 4.5 },
+      { "fg": "card-foreground",      "bg": "card",           "min": 4.5 },
+      { "fg": "popover-foreground",   "bg": "popover",        "min": 4.5 },
+      { "fg": "primary-foreground",   "bg": "primary",        "min": 4.5 },
+      { "fg": "secondary-foreground", "bg": "secondary",      "min": 4.5 },
+      { "fg": "muted-foreground",     "bg": "background",     "min": 4.5 },
+      { "fg": "muted-foreground",     "bg": "card",           "min": 4.5 },
+      { "fg": "muted-foreground",     "bg": "muted",          "min": 4.5 },
+      { "fg": "text-subtle",          "bg": "background",     "min": 4.5 },
+      { "fg": "text-subtle",          "bg": "card",           "min": 4.5 },
+      { "fg": "text-accent",          "bg": "background",     "min": 4.5 },
+      { "fg": "text-accent",          "bg": "card",           "min": 4.5 },
+      { "fg": "destructive-foreground", "bg": "destructive",  "min": 4.5 },
+      { "fg": "text-on-brand",        "bg": "field-brand",    "min": 4.5 },
+      { "fg": "foreground",           "bg": "surface-brand",  "min": 4.5 },
+      { "fg": "guld-foreground",      "bg": "guld",           "min": 4.5 },
+      { "fg": "sidebar-foreground",   "bg": "sidebar",        "min": 4.5 },
+      { "fg": "ring",                 "bg": "background",     "min": 3 },
+      { "fg": "input",                "bg": "card",           "min": 3, "warn": true, "note": "Input border. WCAG 1.4.11 asks 3:1 for a control boundary; Kollin's brand border value is lighter. Reported, not enforced." },
+      { "fg": "level-easy-foreground",      "bg": "level-easy-muted",      "min": 4.5 },
+      { "fg": "level-medium-foreground",    "bg": "level-medium-muted",    "min": 4.5 },
+      { "fg": "level-hard-foreground",      "bg": "level-hard-muted",      "min": 4.5 },
+      { "fg": "level-nightmare-foreground", "bg": "level-nightmare-muted", "min": 4.5 },
+      { "fg": "level-unrated-foreground",   "bg": "level-unrated-muted",   "min": 4.5 }
+    ]
+  }
+}
