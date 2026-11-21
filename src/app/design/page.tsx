@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { FigureShowcase } from "@/components/app/figures/figure-showcase";
 import { MasteryBadge, masteryBarClass, type MasteryState } from "@/components/mastery-badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
@@ -73,6 +74,7 @@ export default function DesignPage() {
             <a className="hover:text-foreground" href="#color">Color</a>
             <a className="hover:text-foreground" href="#type">Type</a>
             <a className="hover:text-foreground" href="#components">Components</a>
+            <a className="hover:text-foreground" href="#figures">Figures</a>
             <a className="hover:text-foreground" href="#product">Product</a>
           </nav>
           <ThemeToggle />
@@ -213,6 +215,10 @@ export default function DesignPage() {
               </CardContent>
             </Card>
           </div>
+        </Section>
+
+        <Section id="figures" eyebrow="Tutor visuals" title="Figures and lessons">
+          <FigureShowcase />
         </Section>
 
         <Section id="product" eyebrow="In context" title="Topic cards">
