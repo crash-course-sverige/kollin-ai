@@ -16,9 +16,12 @@ export default function Home() {
       <Typography role="body-lg" tone="muted">
         Exams become exercises, exercises become topics, and topics grow into a graph of what to study next.
       </Typography>
-      <div>
-        <Button asChild size="lg">
-          <Link href="/design">See the design system</Link>
+      <div className="flex flex-wrap gap-3">
+        <Button asChild size="touch">
+          <Link href="/app">Open the app prototype</Link>
+        </Button>
+        <Button asChild size="touch" variant="outline">
+          <Link href="/design">Design system</Link>
         </Button>
       </div>
     </main>

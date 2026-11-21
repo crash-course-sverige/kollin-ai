@@ -5,6 +5,10 @@
 /* Generated from tokens/kollin.tokens.json (pnpm tokens). Do not edit. */
 @import "../styles/tokens.css";
 
+/* Streamdown (chat markdown) ships Tailwind classes in its dist; let Tailwind see them. */
+@source "../../node_modules/streamdown/dist/*.js";
+@source "../../node_modules/@streamdown/code/dist/*.js";
+
 @custom-variant dark (&:is(.dark *));
 
 /* -------------------------------------------------------------------------
@@ -200,6 +204,20 @@
   font-size: 1.0625rem;
   line-height: 1.7;
   max-width: 68ch;
+}
+
+/* -------------------------------------------------------------------------
+ * Figures (Mafs): map its theme variables onto Kollin tokens, so plots follow
+ * light/dark mode. `.MafsView` declares its own variables, so the override
+ * needs the extra class for specificity.
+ * ----------------------------------------------------------------------- */
+.kollin-figure .MafsView {
+  --mafs-bg: var(--card);
+  --mafs-fg: var(--foreground);
+  --mafs-origin-color: var(--muted-foreground);
+  --mafs-line-color: var(--border);
+  --grid-line-subdivision-color: var(--border-subtle);
+  font-family: var(--font-sans);
 }
 
 /* -------------------------------------------------------------------------
