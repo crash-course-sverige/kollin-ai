@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 const typography = cva("", {
   variants: {
     role: {
+      "display-hero": "type-display-hero",
       "display-xl": "type-display-xl",
       "display-lg": "type-display-lg",
       "section-title": "type-section-title",
@@ -42,6 +43,7 @@ const typography = cva("", {
 type Role = NonNullable<VariantProps<typeof typography>["role"]>;
 
 const defaultElement: Record<Role, ElementType> = {
+  "display-hero": "h1",
   "display-xl": "h1",
   "display-lg": "h2",
   "section-title": "h2",

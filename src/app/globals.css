@@ -131,6 +131,21 @@
     line-height: 3rem;
   }
 }
+/* Marketing hero only. Product surfaces use display-xl / display-lg. */
+@utility type-display-hero {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  @media (width >= 48rem) {
+    font-size: 3.5rem;
+  }
+  @media (width >= 64rem) {
+    font-size: 4.25rem;
+  }
+}
 @utility type-display-lg {
   font-family: var(--font-display);
   font-weight: 500;
@@ -229,6 +244,7 @@
   }
 
   html {
+    scroll-behavior: smooth;
     /* Pinch zoom stays available; only removes the double-tap zoom delay. */
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
